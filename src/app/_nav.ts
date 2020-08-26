@@ -15,15 +15,24 @@ export const navItems: INavData[] = [
         name: 'PERSON MANAGEMENT'
     },
     {
-        name: 'Staff',
+        name: 'Staffs',
         url: '/staff',
+        icon: 'icon-user'
+    },
+    {
+        name: 'Customers',
+        url: '/customer',
         icon: 'icon-people'
     },
     {
-        name: 'Customer',
-        url: '/customer',
-        icon: 'icon-user'
-    }
+        title: true,
+        name: 'OTHER'
+    },
+    {
+        name: 'Notes',
+        url: '/note',
+        icon: 'icon-notebook'
+    },
 ]
 
 // export const navItems: INavData[] = [
