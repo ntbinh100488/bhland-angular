@@ -6,6 +6,8 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 import { NoteComponent } from './note.component';
 import { NoteRoutingModule } from './note-routing.module';
+import { HeroDetailModule} from '../hero-detail/hero-detail.module';
+import { HeroDetailRoutingModule} from '../hero-detail/hero-detail-routing.module';
 
 @NgModule({
   imports: [
@@ -13,6 +15,8 @@ import { NoteRoutingModule } from './note-routing.module';
     NoteRoutingModule,
     ChartsModule,
     BsDropdownModule,
+    HeroDetailRoutingModule,
+    HeroDetailModule,
     ButtonsModule.forRoot()
   ],
   declarations: [ NoteComponent ]
