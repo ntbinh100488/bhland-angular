@@ -40,7 +40,8 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
-import { HeroDetailModule } from './views/hero-detail/hero-detail.module'
+import { HeroDetailModule } from './views/hero-detail/hero-detail.module';
+import { FormBuilderModule } from './views/form-builder/form-builder.module'
 
 @NgModule({
   imports: [
@@ -54,6 +55,7 @@ import { HeroDetailModule } from './views/hero-detail/hero-detail.module'
     AppSidebarModule,
     PerfectScrollbarModule,
     HeroDetailModule,
+    FormBuilderModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule

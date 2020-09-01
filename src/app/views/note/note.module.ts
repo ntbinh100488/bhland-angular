@@ -8,6 +8,8 @@ import { NoteComponent } from './note.component';
 import { NoteRoutingModule } from './note-routing.module';
 import { HeroDetailModule} from '../hero-detail/hero-detail.module';
 import { HeroDetailRoutingModule} from '../hero-detail/hero-detail-routing.module';
+import { FormBuilderModule} from '../form-builder/form-builder.module';
+import { FormBuilderRoutingModule} from '../form-builder/form-builder-routing.module';
 
 @NgModule({
   imports: [
@@ -17,6 +19,8 @@ import { HeroDetailRoutingModule} from '../hero-detail/hero-detail-routing.modul
     BsDropdownModule,
     HeroDetailRoutingModule,
     HeroDetailModule,
+    FormBuilderRoutingModule,
+    FormBuilderModule,
     ButtonsModule.forRoot()
   ],
   declarations: [ NoteComponent ]
