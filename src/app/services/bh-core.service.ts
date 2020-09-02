@@ -27,8 +27,7 @@ export class BhCoreService {
     
     submitForm(route: string, formData: any): any{
         let method = formData.id ? 'PATCH' : 'POST';
-        // let url = this.baseUrl + 'api/' + route;
-        let url = 'http://localhost:3000/api/notes';
+        let url = window.location.origin + 'api/' + route;
         if(method == 'POST'){
             delete formData['id'];
             this.http.post<any>(url, formData).subscribe(data => {
