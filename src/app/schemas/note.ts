@@ -16,7 +16,7 @@ export const noteSchema = {
             name: 'description',
             displayName: 'Description',
             sequenceNumber: 1,
-            type: "text",
+            type: "textarea",
             placeholder: 'Description',
             required: true,
             minLength: 3,
