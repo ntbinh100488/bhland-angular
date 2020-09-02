@@ -20,6 +20,7 @@ export class BhTextControlComponent implements OnInit {
     @Input() hasInvalid: boolean;
     @Input() hasRequiredError: boolean;
     @Input() hasMinLengthError: boolean;
+    @Input() controlReadonly: boolean;
 
     @Input() parentGroup: FormGroup;
 

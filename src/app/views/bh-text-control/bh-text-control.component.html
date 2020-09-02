@@ -6,6 +6,7 @@
         id="{{entitySchemaName}}-{{controlName}}" 
         type="{{controlType}}"
         ngModel
+        [readonly]="controlReadonly"
         class="form-control">
     <textarea 
         *ngIf="controlType==='textarea'"

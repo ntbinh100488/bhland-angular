@@ -12,7 +12,8 @@ export const noteSchema = {
             placeholder: 'Id',
             required: false,
             minLength: undefined,
-            isHidden: true
+            isHidden: false,
+            readonly:true
         },
         {
             name: 'description',
@@ -22,7 +23,8 @@ export const noteSchema = {
             placeholder: 'Description',
             required: true,
             minLength: 3,
-            isHidden: false
+            isHidden: false,
+            readonly:false
         }
     ],
     form:{
