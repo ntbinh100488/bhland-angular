@@ -5,7 +5,7 @@
             [ngSwitch]="entitySchemaPropertyItem.type"
             *ngFor="let entitySchemaPropertyItem of entitySchemaProperties; let entitySchemaPropertyItemIndex = index" 
             class="form-group">
-                <app-bh-text-control *ngSwitchCase="['text', 'textarea', 'number', 'date', 'password', 'datetime-local', 'month'].includes(entitySchemaPropertyItem.type) ? entitySchemaPropertyItem.type : ''"
+                <app-bh-text-control *ngSwitchCase="['text', 'textarea', 'number', 'date', 'password', 'datetime-local', 'month', 'time'].includes(entitySchemaPropertyItem.type) ? entitySchemaPropertyItem.type : ''"
                     [parentGroup]="noteForm"
                     [entitySchemaName]="entitySchemaName" 
                     [controlName]="entitySchemaPropertyItem.name"

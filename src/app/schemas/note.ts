@@ -19,7 +19,7 @@ export const noteSchema = {
             name: 'description',
             displayName: 'Description',
             sequenceNumber: 1,
-            type: formControlTypes.month,
+            type: formControlTypes.timeOnly,
             placeholder: 'Description',
             required: true,
             minLength: 3,
