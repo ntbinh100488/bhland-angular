@@ -12,13 +12,13 @@ export const noteSchema = {
             placeholder: 'Id',
             required: false,
             minLength: undefined,
-            isHidden: false
+            isHidden: true
         },
         {
             name: 'description',
             displayName: 'Description',
             sequenceNumber: 1,
-            type: formControlTypes.dateTimeLocal,
+            type: formControlTypes.month,
             placeholder: 'Description',
             required: true,
             minLength: 3,

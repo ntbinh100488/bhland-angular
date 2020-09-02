@@ -6,4 +6,5 @@ export const formControlTypes = {
     dateTimeLocal:'datetime-local',
     email:'email', // inprogress
     password:'password',
+    month:'month'
 }
