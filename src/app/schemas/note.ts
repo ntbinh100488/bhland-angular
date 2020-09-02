@@ -1,17 +1,17 @@
-
 export const noteSchema = {
-    name: "Note",
-    plural: "Notes",
+    name: "note",
+    plural: "notes",
     properties:[
         {
             name:'description',
             displayName:'Description',
             sequenceNumber:1,
-            type: "string",
+            type: "text",
+            placeholder: 'Description',
             required: true
         }
     ],
-    form: {
+    form:{
         
     },
     list:{
