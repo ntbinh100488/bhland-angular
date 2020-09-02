@@ -5,7 +5,7 @@
             [ngSwitch]="entitySchemaPropertyItem.type"
             *ngFor="let entitySchemaPropertyItem of entitySchemaProperties; let entitySchemaPropertyItemIndex = index" 
             class="form-group">
-                <app-bh-text-control *ngSwitchCase="['text', 'textarea'].includes(entitySchemaPropertyItem.type) ? entitySchemaPropertyItem.type : ''"
+                <app-bh-text-control *ngSwitchCase="['text', 'textarea', 'number', 'date'].includes(entitySchemaPropertyItem.type) ? entitySchemaPropertyItem.type : ''"
                     [parentGroup]="noteForm"
                     [entitySchemaName]="entitySchemaName" 
                     [controlName]="entitySchemaPropertyItem.name"
@@ -14,8 +14,8 @@
                     [minLength]="entitySchemaPropertyItem.minLength"
                     [hasTouched]="entitySchemaPropertyItem.formControl.touched"
                     [hasInvalid]="entitySchemaPropertyItem.formControl.invalid"
-                    [hasRequiredError]="entitySchemaPropertyItem.formControl.errors && entitySchemaPropertyItem.formControl.errors.required"
-                    [hasMinLengthError]="entitySchemaPropertyItem.formControl.errors && entitySchemaPropertyItem.formControl.errors.minlength">
+                    [hasRequiredError]="entitySchemaPropertyItem.formControl.errors?.required"
+                    [hasMinLengthError]="entitySchemaPropertyItem.formControl.errors?.minlength">
                 </app-bh-text-control>
         </div>
         <button class="btn btn-primary" type="submit" [disabled]="!noteForm.valid">Submit</button>
