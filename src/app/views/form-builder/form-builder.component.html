@@ -4,7 +4,8 @@
             <label for="{{entitySchemaName}}-{{entitySchemaPropertyItem.name}}">{{entitySchemaPropertyItem.displayName}}</label>
             <input formControlName="{{entitySchemaPropertyItem.name}}"
                 id="{{entitySchemaName}}-{{entitySchemaPropertyItem.name}}" 
-                type="{{entitySchemaPropertyItem.type}}" 
+                type="{{entitySchemaPropertyItem.type}}"
+                ngModel
                 class="form-control">
             <div *ngIf="entitySchemaPropertyItem.formControl.touched && entitySchemaPropertyItem.formControl.invalid" class="alert alert-danger">
                 <div *ngIf="entitySchemaPropertyItem.formControl.errors.required">{{entitySchemaPropertyItem.displayName}} is required.</div>

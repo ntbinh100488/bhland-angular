@@ -19,7 +19,8 @@ export class FormBuilderComponent implements OnInit {
     entitySchemaProperties: any[] = [];
     entitySchema: any;
     entitySchemaName: string;
-    entityData: any;
+    entityData: any = {};
+    description: string;
     noteForm = new FormGroup({});
 
     ngOnInit(): void {
@@ -39,6 +40,11 @@ export class FormBuilderComponent implements OnInit {
             this.noteForm.addControl(entitySchemaPropertyItem.name, new FormControl('', frmFieldValidation));
             entitySchemaPropertyItem.formControl = this.noteForm.controls[entitySchemaPropertyItem.name];
         });
+        setTimeout(()=> {
+            this.noteForm.patchValue({
+                'description': 'Binh'
+            });
+        }, 0);
     }
 
     get formControls(){
@@ -47,6 +53,6 @@ export class FormBuilderComponent implements OnInit {
 
     submit(){
         console.log(this.noteForm.value);
+        let result = this.bhCoreService.submitForm(this.entitySchema.plural, this.noteForm.value);
     }
-
 }

@@ -10,7 +10,7 @@ export const noteSchema = {
             placeholder: 'Id',
             required: false,
             minLength: undefined,
-            isHidden: false
+            isHidden: true
         },
         {
             name: 'description',

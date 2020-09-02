@@ -1,12 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { noteSchema } from '../schemas/note';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class BhCoreService {
+    httpOptions = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
 
-    constructor() { }
+    constructor(private http: HttpClient) {
+    }
     
     getEntitySchema(schemaName: string): any {
 		if(noteSchema.name === 'note'){
@@ -18,5 +23,23 @@ export class BhCoreService {
 		if(noteSchema.name === 'note'){
 			return noteSchema.properties;
 		}
-	}
+    }
+    
+    submitForm(route: string, formData: any): any{
+        let method = formData.id ? 'PATCH' : 'POST';
+        // let url = this.baseUrl + 'api/' + route;
+        let url = 'http://localhost:3000/api/notes';
+        if(method == 'POST'){
+            delete formData['id'];
+            this.http.post<any>(url, formData).subscribe(data => {
+                let dataId = data.id;
+            })
+        }else if(method == 'PATCH'){    
+
+        }
+    }
+
+    handleError(errorMessage: string): any{
+        console.log(errorMessage);
+    }
 }
