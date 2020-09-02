@@ -1,18 +1,24 @@
 <div class="card-body">
       <form [formGroup]="noteForm" (ngSubmit)="submit()">
-        <div [hidden]="entitySchemaPropertyItem.isHidden" *ngFor="let entitySchemaPropertyItem of entitySchemaProperties; let entitySchemaPropertyItemIndex = index" class="form-group">
-            <label for="{{entitySchemaName}}-{{entitySchemaPropertyItem.name}}">{{entitySchemaPropertyItem.displayName}}</label>
-            <input formControlName="{{entitySchemaPropertyItem.name}}"
-                id="{{entitySchemaName}}-{{entitySchemaPropertyItem.name}}" 
-                type="{{entitySchemaPropertyItem.type}}"
-                ngModel
-                class="form-control">
-            <div *ngIf="entitySchemaPropertyItem.formControl.touched && entitySchemaPropertyItem.formControl.invalid" class="alert alert-danger">
-                <div *ngIf="entitySchemaPropertyItem.formControl.errors.required">{{entitySchemaPropertyItem.displayName}} is required.</div>
-                <div *ngIf="entitySchemaPropertyItem.formControl.errors.minlength">{{entitySchemaPropertyItem.displayName}} should be {{entitySchemaPropertyItem.minLength}} character.</div>
-            </div>
+        <div 
+            [hidden]="entitySchemaPropertyItem.isHidden" 
+            *ngFor="let entitySchemaPropertyItem of entitySchemaProperties; let entitySchemaPropertyItemIndex = index" 
+            class="form-group">
+                <div [ngSwitch]="entitySchemaPropertyItem.type">
+                    <app-bh-text-control *ngSwitchCase="['text', 'textarea'].includes(entitySchemaPropertyItem.type) ? entitySchemaPropertyItem.type : ''"
+                        [parentGroup]="noteForm"
+                        entitySchemaName="{{entitySchemaName}}" 
+                        controlName="{{entitySchemaPropertyItem.name}}"
+                        displayName="{{entitySchemaPropertyItem.displayName}}"
+                        controlType="{{entitySchemaPropertyItem.type}}"
+                        [minLength]="entitySchemaPropertyItem.minLength"
+                        [hasTouched]="entitySchemaPropertyItem.formControl.touched"
+                        [hasInvalid]="entitySchemaPropertyItem.formControl.invalid"
+                        [hasRequiredError]="entitySchemaPropertyItem.formControl.errors && entitySchemaPropertyItem.formControl.errors.required"
+                        [hasMinLengthError]="entitySchemaPropertyItem.formControl.errors && entitySchemaPropertyItem.formControl.errors.minlength">
+                    </app-bh-text-control>
+                </div>
         </div>
-      
         <button class="btn btn-primary" type="submit" [disabled]="!noteForm.valid">Submit</button>
     </form>
 </div>

@@ -1,0 +1,22 @@
+<div [formGroup]="parentGroup">
+    <label for="{{entitySchemaName}}-{{controlName}}">{{displayName}}</label>
+    <input 
+        *ngIf="controlType==='text'"
+        formControlName="{{controlName}}"
+        id="{{entitySchemaName}}-{{controlName}}" 
+        type="{{controlType}}"
+        ngModel
+        class="form-control">
+    <textarea 
+        *ngIf="controlType==='textarea'"
+        formControlName="{{controlName}}"
+        id="{{entitySchemaName}}-{{controlName}}" 
+        ngModel
+        class="form-control">
+    </textarea>
+    <div *ngIf="hasTouched && hasInvalid" class="alert alert-danger">
+        <div *ngIf="hasRequiredError">{{displayName}} is required.</div>
+        <div *ngIf="hasMinLengthError">{{displayName}} should be {{minLength}} character(s).</div>
+    </div>
+</div>
+

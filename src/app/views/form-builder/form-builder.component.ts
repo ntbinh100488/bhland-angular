@@ -23,6 +23,7 @@ export class FormBuilderComponent implements OnInit {
     entityData: any = {};
     description: string;
     noteForm = new FormGroup({});
+    firstFormControl: FormControl;
 
     ngOnInit(): void {
         let href = this.router.url;   // this.router.url = '/note'
@@ -48,6 +49,7 @@ export class FormBuilderComponent implements OnInit {
                 this.bhCoreService.getFormData(this.entitySchema.plural, id, boundSetFormValue);
             }
         });
+        this.firstFormControl = this.entitySchemaProperties[0].formControl;
     }
 
     setFormValue(formData: any){
