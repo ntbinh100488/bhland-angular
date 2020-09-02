@@ -1,41 +1,14 @@
 <div class="card-body">
       <form [formGroup]="noteForm" (ngSubmit)="submit()">
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input 
-                formControlName="name"
-                id="name" 
-                type="text" 
+        <div [hidden]="entitySchemaPropertyItem.isHidden" *ngFor="let entitySchemaPropertyItem of entitySchemaProperties; let entitySchemaPropertyItemIndex = index" class="form-group">
+            <label for="{{entitySchemaName}}-{{entitySchemaPropertyItem.name}}">{{entitySchemaPropertyItem.displayName}}</label>
+            <input formControlName="{{entitySchemaPropertyItem.name}}"
+                id="{{entitySchemaName}}-{{entitySchemaPropertyItem.name}}" 
+                type="{{entitySchemaPropertyItem.type}}" 
                 class="form-control">
-            <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
-                <div *ngIf="f.name.errors.required">Name is required.</div>
-                <div *ngIf="f.name.errors.minlength">Name should be 3 character.</div>
-            </div>
-        </div>
-       
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input 
-                formControlName="email"
-                id="email" 
-                type="text" 
-                class="form-control">
-            <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
-                <div *ngIf="f.email.errors.required">Email is required.</div>
-                <div *ngIf="f.email.errors.email">Please, enter valid email address.</div>
-            </div>
-        </div>
-       
-        <div class="form-group">
-            <label for="body">Body</label>
-            <textarea 
-                formControlName="body"
-                id="body" 
-                type="text" 
-                class="form-control">
-            </textarea>
-            <div *ngIf="f.body.touched && f.body.invalid" class="alert alert-danger">
-                <div *ngIf="f.body.errors.required">Body is required.</div>
+            <div *ngIf="entitySchemaPropertyItem.formControl.touched && entitySchemaPropertyItem.formControl.invalid" class="alert alert-danger">
+                <div *ngIf="entitySchemaPropertyItem.formControl.errors.required">{{entitySchemaPropertyItem.displayName}} is required.</div>
+                <div *ngIf="entitySchemaPropertyItem.formControl.errors.minlength">{{entitySchemaPropertyItem.displayName}} should be {{entitySchemaPropertyItem.minLength}} character.</div>
             </div>
         </div>
       
