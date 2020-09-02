@@ -8,6 +8,7 @@ export class BhCommonService {
   constructor() { }
 
   routeUrlToSchemaName(routeName: string): string{
-      return routeName.replace("/", '');
+    let pathNames = routeName.split('?');
+    return pathNames[0].replace("/", '');
   }
 }
