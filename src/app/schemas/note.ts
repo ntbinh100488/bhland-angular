@@ -18,7 +18,7 @@ export const noteSchema = {
             name: 'description',
             displayName: 'Description',
             sequenceNumber: 1,
-            type: formControlTypes.password,
+            type: formControlTypes.dateTimeLocal,
             placeholder: 'Description',
             required: true,
             minLength: 3,

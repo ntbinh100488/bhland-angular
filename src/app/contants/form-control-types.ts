@@ -3,6 +3,7 @@ export const formControlTypes = {
     textArea:'textarea',
     number:'number',
     date:'date',
+    dateTimeLocal:'datetime-local',
     email:'email', // inprogress
-    password:'password'
+    password:'password',
 }
