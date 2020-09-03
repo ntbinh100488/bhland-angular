@@ -1,23 +1,27 @@
 <div [formGroup]="parentGroup">
     <label for="{{entitySchemaName}}-{{controlName}}">{{displayName}}</label>
     <input 
-        *ngIf="['text', 'textarea', 'number', 'date', 'password', 'datetime-local', 'month', 'time'].includes(controlType)"
+        *ngIf="['text', 'number', 'date', 'password', 'datetime-local', 'month', 'time'].includes(controlType)"
         formControlName="{{controlName}}"
         id="{{entitySchemaName}}-{{controlName}}" 
         type="{{controlType}}"
         ngModel
         [readonly]="controlReadonly"
+        [min]="minLength"
+        [maxlength]="maxLength"
         class="form-control">
     <textarea 
         *ngIf="controlType==='textarea'"
         formControlName="{{controlName}}"
         id="{{entitySchemaName}}-{{controlName}}" 
         ngModel
+        [readonly]="controlReadonly"
         class="form-control">
     </textarea>
     <div *ngIf="hasTouched && hasInvalid" class="alert alert-danger">
         <div *ngIf="hasRequiredError">{{displayName}} is required.</div>
-        <div *ngIf="hasMinLengthError">{{displayName}} should be {{minLength}} character(s).</div>
+        <div *ngIf="hasMinLengthError">{{displayName}} Minimum length should be {{minLength}} character(s).</div>
+        <div *ngIf="hasMaxLengthError">{{displayName}} Maximum length should be {{maxLength}} character(s).</div>
     </div>
 </div>
 

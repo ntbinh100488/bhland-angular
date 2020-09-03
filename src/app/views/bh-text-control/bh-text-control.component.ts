@@ -15,11 +15,13 @@ export class BhTextControlComponent implements OnInit {
     @Input() displayName: string;
     @Input() controlType: string;
     @Input() minLength: number;
+    @Input() maxLength: number;
 
     @Input() hasTouched: boolean;
     @Input() hasInvalid: boolean;
     @Input() hasRequiredError: boolean;
     @Input() hasMinLengthError: boolean;
+    @Input() hasMaxLengthError: boolean;
     @Input() controlReadonly: boolean;
 
     @Input() parentGroup: FormGroup;

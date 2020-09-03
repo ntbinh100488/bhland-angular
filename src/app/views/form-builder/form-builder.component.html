@@ -13,10 +13,12 @@
                     [controlType]="entitySchemaPropertyItem.type"
                     [controlReadonly]="entitySchemaPropertyItem.readonly"
                     [minLength]="entitySchemaPropertyItem.minLength"
+                    [maxLength]="entitySchemaPropertyItem.maxLength"
                     [hasTouched]="entitySchemaPropertyItem.formControl.touched"
                     [hasInvalid]="entitySchemaPropertyItem.formControl.invalid"
                     [hasRequiredError]="entitySchemaPropertyItem.formControl.errors?.required"
-                    [hasMinLengthError]="entitySchemaPropertyItem.formControl.errors?.minlength">
+                    [hasMinLengthError]="entitySchemaPropertyItem.formControl.errors?.minlength"
+                    [hasMaxLengthError]="entitySchemaPropertyItem.formControl.errors?.maxlength">
                 </app-bh-text-control>
         </div>
         <button class="btn btn-primary" type="submit" [disabled]="!noteForm.valid">Submit</button>
