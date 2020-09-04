@@ -1,0 +1,20 @@
+<div [formGroup]="parentGroup">
+    <label for="{{entitySchemaName}}-{{controlName}}">{{displayName}}</label>
+    <input 
+        formControlName="{{controlName}}"
+        id="{{entitySchemaName}}-{{controlName}}" 
+        type="{{controlType}}"
+        ngModel
+        [readonly]="controlReadonly"
+        [step]="stepValue"
+        [min]="minValue"
+        [max]="maxValue"
+        [value]="minValue"
+        class="form-control">
+    <div *ngIf="hasTouched && hasInvalid" class="alert alert-danger">
+        <div *ngIf="hasRequiredError">{{displayName}} is required.</div>
+        <div *ngIf="hasMinValueError">{{displayName}} Minimum value should be {{minValue}}.</div>
+        <div *ngIf="hasMaxValueError">{{displayName}} Maximum value should be {{maxValue}}.</div>
+    </div>
+</div>
+

@@ -1,7 +1,7 @@
 <div [formGroup]="parentGroup">
     <label for="{{entitySchemaName}}-{{controlName}}">{{displayName}}</label>
     <input 
-        *ngIf="['text', 'number', 'date', 'password', 'datetime-local', 'month', 'time'].includes(controlType)"
+        *ngIf="['text', 'date', 'password', 'datetime-local', 'month', 'time'].includes(controlType)"
         formControlName="{{controlName}}"
         id="{{entitySchemaName}}-{{controlName}}" 
         type="{{controlType}}"

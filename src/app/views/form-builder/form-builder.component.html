@@ -5,7 +5,7 @@
             [ngSwitch]="entitySchemaPropertyItem.type"
             *ngFor="let entitySchemaPropertyItem of entitySchemaProperties; let entitySchemaPropertyItemIndex = index" 
             class="form-group">
-                <app-bh-text-control *ngSwitchCase="['text', 'textarea', 'number', 'date', 'password', 'datetime-local', 'month', 'time'].includes(entitySchemaPropertyItem.type) ? entitySchemaPropertyItem.type : ''"
+                <app-bh-text-control *ngSwitchCase="['text', 'textarea', 'date', 'password', 'datetime-local', 'month', 'time'].includes(entitySchemaPropertyItem.type) ? entitySchemaPropertyItem.type : ''"
                     [parentGroup]="noteForm"
                     [entitySchemaName]="entitySchemaName" 
                     [controlName]="entitySchemaPropertyItem.name"
@@ -20,7 +20,7 @@
                     [hasMinLengthError]="entitySchemaPropertyItem.formControl.errors?.minlength"
                     [hasMaxLengthError]="entitySchemaPropertyItem.formControl.errors?.maxlength">
                 </app-bh-text-control>
-                <app-bh-checkbox-control *ngSwitchCase="['checkbox'].includes(entitySchemaPropertyItem.type) ? entitySchemaPropertyItem.type : ''"
+                <app-bh-checkbox-control *ngSwitchCase="entitySchemaPropertyItem.type==='checkbox'"
                     [parentGroup]="noteForm"
                     [entitySchemaName]="entitySchemaName" 
                     [controlName]="entitySchemaPropertyItem.name"
@@ -30,6 +30,22 @@
                     [hasTouched]="entitySchemaPropertyItem.formControl.touched"
                     [hasInvalid]="entitySchemaPropertyItem.formControl.invalid">
                 </app-bh-checkbox-control>
+                <app-bh-number-control *ngSwitchCase="['number', 'range'].includes(entitySchemaPropertyItem.type) ? entitySchemaPropertyItem.type : ''"
+                    [parentGroup]="noteForm"
+                    [entitySchemaName]="entitySchemaName" 
+                    [controlName]="entitySchemaPropertyItem.name"
+                    [displayName]="entitySchemaPropertyItem.displayName"
+                    [controlType]="entitySchemaPropertyItem.type"
+                    [stepValue]="entitySchemaPropertyItem.stepValue"
+                    [minValue]="entitySchemaPropertyItem.minValue"
+                    [maxValue]="entitySchemaPropertyItem.maxValue"
+                    [controlReadonly]="entitySchemaPropertyItem.readonly"
+                    [hasRequiredError]="entitySchemaPropertyItem.formControl.errors?.required"
+                    [hasTouched]="entitySchemaPropertyItem.formControl.touched"
+                    [hasInvalid]="entitySchemaPropertyItem.formControl.invalid"
+                    >
+
+                </app-bh-number-control>
         </div>
         
         <button class="btn btn-primary" type="submit" [disabled]="!noteForm.valid">Submit</button>

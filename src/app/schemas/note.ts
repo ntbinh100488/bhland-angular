@@ -13,7 +13,6 @@ let idField: BHTextControlType =  {
     hidden: false,
     readonly: false
 };
-
 let descriptionField: BHTextControlType =  {
     name: 'timeOnly',
     displayName: 'timeOnly',
@@ -26,7 +25,6 @@ let descriptionField: BHTextControlType =  {
     hidden: false,
     readonly: false
 };
-
 let checkBoxField: BHBooleanControlType =  {
     name: 'checkbox',
     displayName: 'checkbox',
@@ -35,11 +33,36 @@ let checkBoxField: BHBooleanControlType =  {
     hidden: false,
     readonly: false
 };
-
+let numberField: BHNumberControlType =  {
+    name: 'number',
+    displayName: 'number',
+    sequenceNumber: 1,
+    type: formControlTypes.number,
+    hidden: false,
+    readonly: false,
+    stepValue:1,
+    minValue:0,
+    maxValue: 10,
+    required: true
+};
+let rangeField: BHNumberControlType =  {
+    name: 'rangeField',
+    displayName: 'rangeField',
+    sequenceNumber: 1,
+    type: formControlTypes.rangeNumber,
+    hidden: false,
+    readonly: false,
+    stepValue:1,
+    minValue:0,
+    maxValue: 10,
+    required: true
+};
 let entityControls: (BHTextControlType|BHBooleanControlType)[] = [
     idField,
     descriptionField,
-    checkBoxField
+    checkBoxField,
+    numberField,
+    rangeField
 ];
 
 export const noteSchema = {
