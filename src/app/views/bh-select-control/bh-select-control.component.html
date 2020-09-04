@@ -1,0 +1,16 @@
+<div [formGroup]="parentGroup">
+    <label for="{{entitySchemaName}}-{{controlName}}">{{displayName}}</label>
+    <select 
+        formControlName="{{controlName}}" 
+        id="{{entitySchemaName}}-{{controlName}}"
+        ngModel
+        class="form-control" >
+            <option [value]="null">{{placeHolder}}</option>
+            <option *ngFor="let optionDataItem of optionData; let optionDataItemIndex = index" [value]="optionDataItem.value">
+                {{optionDataItem.displayValue}}
+            </option>
+    </select>
+    <div *ngIf="hasTouched && hasInvalid" class="alert alert-danger">
+        <div *ngIf="hasRequiredError">{{displayName}} is required.</div>
+    </div>
+</div>

@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BhTextControlModule} from '../bh-text-control/bh-text-control.module'
 import { BhCheckboxControlModule } from '../bh-checkbox-control/bh-checkbox-control.module'
 import { BhNumberControlModule } from '../bh-number-control/bh-number-control.module'
+import { BhSelectControlModule } from '../bh-select-control/bh-select-control.module'
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { BhNumberControlModule } from '../bh-number-control/bh-number-control.mo
     HttpClientModule, 
     BhTextControlModule, 
     BhCheckboxControlModule,
-    BhNumberControlModule
+    BhNumberControlModule,
+    BhSelectControlModule
 ],
   exports: [FormBuilderComponent],
   declarations: [ FormBuilderComponent ]

@@ -57,12 +57,28 @@ let rangeField: BHNumberControlType =  {
     maxValue: 10,
     required: true
 };
-let entityControls: (BHTextControlType|BHBooleanControlType)[] = [
-    idField,
-    descriptionField,
-    checkBoxField,
-    numberField,
-    rangeField
+let selectListField: BHSelectControlType =  {
+    name: 'selectListField',
+    displayName: 'selectListField',
+    placeHolder: 'Please select an option',
+    sequenceNumber: 5,
+    type: formControlTypes.selectList,
+    hidden: false,
+    readonly: false,
+    required: true,
+    optionItems:[{
+        value: 1,
+        displayValue: '111'
+    }],
+    dataSource: undefined
+};
+let entityControls: (BHTextControlType|BHBooleanControlType|BHSelectControlType)[] = [
+    // idField,
+    // descriptionField,
+    // checkBoxField,
+    // numberField,
+    // rangeField,
+    selectListField
 ];
 
 export const noteSchema = {
