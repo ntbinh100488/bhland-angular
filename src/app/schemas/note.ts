@@ -28,7 +28,7 @@ let descriptionField: BHTextControlType =  {
 let checkBoxField: BHBooleanControlType =  {
     name: 'checkbox',
     displayName: 'checkbox',
-    sequenceNumber: 1,
+    sequenceNumber: 2,
     type: formControlTypes.checkBox,
     hidden: false,
     readonly: false
@@ -36,7 +36,7 @@ let checkBoxField: BHBooleanControlType =  {
 let numberField: BHNumberControlType =  {
     name: 'number',
     displayName: 'number',
-    sequenceNumber: 1,
+    sequenceNumber: 3,
     type: formControlTypes.number,
     hidden: false,
     readonly: false,
@@ -48,7 +48,7 @@ let numberField: BHNumberControlType =  {
 let rangeField: BHNumberControlType =  {
     name: 'rangeField',
     displayName: 'rangeField',
-    sequenceNumber: 1,
+    sequenceNumber: 4,
     type: formControlTypes.rangeNumber,
     hidden: false,
     readonly: false,

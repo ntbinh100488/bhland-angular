@@ -1,5 +1,5 @@
 <div class="card-body">
-      <form [formGroup]="noteForm" (ngSubmit)="submit()">
+    <form [formGroup]="noteForm" (ngSubmit)="submit()">
         <div 
             [hidden]="entitySchemaPropertyItem.isHidden" 
             [ngSwitch]="entitySchemaPropertyItem.type"
@@ -20,7 +20,7 @@
                     [hasMinLengthError]="entitySchemaPropertyItem.formControl.errors?.minlength"
                     [hasMaxLengthError]="entitySchemaPropertyItem.formControl.errors?.maxlength">
                 </app-bh-text-control>
-                <app-bh-checkbox-control *ngSwitchCase="entitySchemaPropertyItem.type==='checkbox'"
+                <app-bh-checkbox-control *ngSwitchCase="['checkbox'].includes(entitySchemaPropertyItem.type) ? entitySchemaPropertyItem.type : ''"
                     [parentGroup]="noteForm"
                     [entitySchemaName]="entitySchemaName" 
                     [controlName]="entitySchemaPropertyItem.name"
