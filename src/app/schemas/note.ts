@@ -11,34 +11,46 @@ let idField: BHTextControlType =  {
     minLength: undefined,
     maxLength: undefined,
     hidden: false,
-    readonly: true
+    readonly: false
 };
 
 let descriptionField: BHTextControlType =  {
     name: 'timeOnly',
     displayName: 'timeOnly',
     sequenceNumber: 1,
-    type: formControlTypes.timeOnly,
+    type: formControlTypes.textArea,
     placeholder: 'timeOnly',
     required: true,
     minLength: 3,
     maxLength: 20,
     hidden: false,
-    readonly: true
+    readonly: false
 };
+
+let checkBoxField: BHBooleanControlType =  {
+    name: 'checkbox',
+    displayName: 'checkbox',
+    sequenceNumber: 1,
+    type: formControlTypes.checkBox,
+    hidden: false,
+    readonly: false
+};
+
+let entityControls: (BHTextControlType|BHBooleanControlType)[] = [
+    idField,
+    descriptionField,
+    checkBoxField
+];
 
 export const noteSchema = {
     name: "note",
     plural: "notes",
-    properties:[
-        idField,
-        descriptionField
-    ],
+    properties: entityControls,
     form:{
         
     },
     list:{
-
+        
     },
     grid:{
 

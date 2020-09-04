@@ -1,0 +1,11 @@
+<div class="form-check" [formGroup]="parentGroup">
+    <input 
+        formControlName="{{controlName}}"
+        id="{{entitySchemaName}}-{{controlName}}" 
+        type="checkbox"
+        ngModel
+        [readonly]="controlReadonly"
+        class="form-check-input">
+    <div *ngIf="hasTouched && hasInvalid" class="alert alert-danger"></div>
+    <label class="form-check-label" for="{{entitySchemaName}}-{{controlName}}">{{displayName}}</label>
+</div>

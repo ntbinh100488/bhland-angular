@@ -9,5 +9,6 @@ export const formControlTypes = {
     telephone:'tel',// pattern, placeholder
     password:'password',
     monthOfYear:'month',
-    timeOnly:'time'
+    timeOnly:'time',
+    checkBox: 'checkbox'
 }

@@ -20,7 +20,18 @@
                     [hasMinLengthError]="entitySchemaPropertyItem.formControl.errors?.minlength"
                     [hasMaxLengthError]="entitySchemaPropertyItem.formControl.errors?.maxlength">
                 </app-bh-text-control>
+                <app-bh-checkbox-control *ngSwitchCase="['checkbox'].includes(entitySchemaPropertyItem.type) ? entitySchemaPropertyItem.type : ''"
+                    [parentGroup]="noteForm"
+                    [entitySchemaName]="entitySchemaName" 
+                    [controlName]="entitySchemaPropertyItem.name"
+                    [displayName]="entitySchemaPropertyItem.displayName"
+                    [controlType]="entitySchemaPropertyItem.type"
+                    [controlReadonly]="entitySchemaPropertyItem.readonly"
+                    [hasTouched]="entitySchemaPropertyItem.formControl.touched"
+                    [hasInvalid]="entitySchemaPropertyItem.formControl.invalid">
+                </app-bh-checkbox-control>
         </div>
+        
         <button class="btn btn-primary" type="submit" [disabled]="!noteForm.valid">Submit</button>
     </form>
 </div>
