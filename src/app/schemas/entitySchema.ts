@@ -108,7 +108,7 @@ let entityControls: (BHTextControlType|BHBooleanControlType|BHSelectControlType)
     radioListField
 ];
 
-export const noteSchema = {
+export const entitySchema = [{
     name: "note",
     plural: "notes",
     properties: entityControls,
@@ -121,4 +121,4 @@ export const noteSchema = {
     grid:{
 
     }
-}
+}]

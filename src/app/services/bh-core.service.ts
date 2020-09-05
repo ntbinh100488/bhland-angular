@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { noteSchema } from '../schemas/note';
+import { entitySchema } from '../schemas/entitySchema';
 import { HttpClient, HttpHeaders, HttpUrlEncodingCodec} from '@angular/common/http';
 
 @Injectable({
@@ -14,15 +14,12 @@ export class BhCoreService {
     }
     
     getEntitySchema(schemaName: string): any {
-		if(noteSchema.name === 'note'){
-			return noteSchema;
-		}
+        return entitySchema.find(entitySchemaItem => entitySchemaItem.name === schemaName);
 	}
 
 	getEntityProperties(schemaName: string): any[] {
-		if(noteSchema.name === 'note'){
-			return noteSchema.properties;
-		}
+        let entitySchemaItem = entitySchema.find(entitySchemaItem => entitySchemaItem.name === schemaName);
+		return entitySchemaItem.properties;
     }
     
     submitForm(route: string, formData: any): any{
