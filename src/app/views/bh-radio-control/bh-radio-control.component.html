@@ -1,0 +1,17 @@
+<div [formGroup]="parentGroup">
+    <label for="{{entitySchemaName}}-{{controlName}}">{{displayName}}</label>
+    <div class="form-check" *ngFor="let optionDataItem of optionData; let optionDataItemIndex = index">
+        <input class="form-check-input" 
+            formControlName="{{controlName}}" 
+            id="{{entitySchemaName}}-{{controlName}}-{{optionDataItemIndex}}" 
+            ngModel
+            type="radio" 
+            [value]="optionDataItem.value" 
+            checked>
+        <label class="form-check-label" for="{{entitySchemaName}}-{{controlName}}-{{optionDataItemIndex}}">
+            {{optionDataItem.displayValue}}
+        </label>
+    </div>
+    <div *ngIf="hasTouched && hasInvalid" class="alert alert-danger">
+    </div>
+</div>

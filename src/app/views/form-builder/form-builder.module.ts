@@ -9,6 +9,7 @@ import { BhTextControlModule} from '../bh-text-control/bh-text-control.module'
 import { BhCheckboxControlModule } from '../bh-checkbox-control/bh-checkbox-control.module'
 import { BhNumberControlModule } from '../bh-number-control/bh-number-control.module'
 import { BhSelectControlModule } from '../bh-select-control/bh-select-control.module'
+import { BhRadioControlModule } from '../bh-radio-control/bh-radio-control.module'
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { BhSelectControlModule } from '../bh-select-control/bh-select-control.mo
     BhTextControlModule, 
     BhCheckboxControlModule,
     BhNumberControlModule,
-    BhSelectControlModule
+    BhSelectControlModule,
+    BhRadioControlModule
 ],
   exports: [FormBuilderComponent],
   declarations: [ FormBuilderComponent ]

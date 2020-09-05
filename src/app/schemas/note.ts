@@ -83,13 +83,29 @@ let selectListField: BHSelectControlType =  {
         }]
     }
 };
+let radioListField: BHRadioControlType =  {
+    name: 'radioListField',
+    displayName: 'radioListField',
+    sequenceNumber: 6,
+    type: formControlTypes.radioList,
+    hidden: false,
+    readonly: false,
+    optionItems: null,
+    dataSource: {
+        entityPluralName: 'notes',
+        displayFieldName: 'description',
+        valueFieldName: 'id',
+        filter: null
+    }
+};
 let entityControls: (BHTextControlType|BHBooleanControlType|BHSelectControlType)[] = [
-    // idField,
-    // descriptionField,
-    // checkBoxField,
-    // numberField,
-    // rangeField,
-    selectListField
+    idField,
+    descriptionField,
+    checkBoxField,
+    numberField,
+    rangeField,
+    selectListField,
+    radioListField
 ];
 
 export const noteSchema = {

@@ -63,6 +63,19 @@
                     [hasInvalid]="entitySchemaPropertyItem.formControl.invalid"
                     >
                 </app-bh-select-control>
+
+                <app-bh-radio-control *ngSwitchCase="['radio'].includes(entitySchemaPropertyItem.type) ? entitySchemaPropertyItem.type : ''"
+                    [parentGroup]="noteForm"
+                    [entitySchemaName]="entitySchemaName" 
+                    [controlName]="entitySchemaPropertyItem.name"
+                    [displayName]="entitySchemaPropertyItem.displayName"
+                    [controlType]="entitySchemaPropertyItem.type"
+                    [controlReadonly]="entitySchemaPropertyItem.readonly"
+                    [optionItems]="entitySchemaPropertyItem.optionItems"
+                    [dataSource]="entitySchemaPropertyItem.dataSource"
+                    [hasTouched]="entitySchemaPropertyItem.formControl.touched"
+                    [hasInvalid]="entitySchemaPropertyItem.formControl.invalid"
+                ></app-bh-radio-control>
         </div>
         
         <button class="btn btn-primary" type="submit" [disabled]="!noteForm.valid">Submit</button>
