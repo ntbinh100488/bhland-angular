@@ -11,8 +11,14 @@ interface BHSelectControlOptionItems{
 }
 
 interface BHSelectControlDataSource{
-    entityName: string;
+    entityPluralName: string;
     displayFieldName: string;
     valueFieldName: string;
-    filter: any;
+    filter: BHControlDataSourceFilter[];
+}
+
+interface BHControlDataSourceFilter{
+    fieldName: string;
+    operator: string;
+    fieldValue: any;
 }

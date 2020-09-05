@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { noteSchema } from '../schemas/note';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpUrlEncodingCodec} from '@angular/common/http';
 
 @Injectable({
 	providedIn: 'root'
@@ -44,6 +44,27 @@ export class BhCoreService {
         let url = 'http://localhost:3000/' + 'api/' + route + '/' + entityId;
         this.http.get<any>(url).subscribe(data => {
             cb(data);
+        })
+    }
+
+    getdataSourceData(route: string, filter: BHControlDataSourceFilter[], callback: any): any{
+        let baseUrl = 'http://localhost:3000/' + 'api/' + route;
+        let url = baseUrl;
+        if(filter){
+            let filterStr = ``;
+            filter.forEach((filterEle, filterEleIndex) => {
+                if(filterEleIndex === 0){
+                    filterStr = `?filter[where]`;
+                }else{
+                    filterStr = `filter`;
+                }
+                filterStr += `[${filterEle.fieldName}][${filterEle.operator}]=${filterEle.fieldValue}`;
+                filterStr += (filterEleIndex !== (filter.length - 1)) ? '&' : '';
+                url += filterStr;
+            });
+        }
+        this.http.get<any>(url).subscribe(data => {
+            callback(data);
         })
     }
 

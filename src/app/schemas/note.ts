@@ -66,11 +66,22 @@ let selectListField: BHSelectControlType =  {
     hidden: false,
     readonly: false,
     required: true,
-    optionItems:[{
-        value: 1,
-        displayValue: '111'
-    }],
-    dataSource: undefined
+    optionItems: null,
+    dataSource: {
+        entityPluralName: 'notes',
+        displayFieldName: 'description',
+        valueFieldName: 'id',
+        filter: [{
+            fieldName: 'description',
+            operator: 'eq',
+            fieldValue: '111'
+        },
+        {
+            fieldName: 'id',
+            operator: 'eq',
+            fieldValue: '4'
+        }]
+    }
 };
 let entityControls: (BHTextControlType|BHBooleanControlType|BHSelectControlType)[] = [
     // idField,
