@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { entitySchema } from '../schemas/entitySchema';
 import { HttpClient, HttpHeaders, HttpUrlEncodingCodec} from '@angular/common/http';
+import { BHControlDataSourceFilter } from '../interfaces/select-control-type';
 
 @Injectable({
 	providedIn: 'root'

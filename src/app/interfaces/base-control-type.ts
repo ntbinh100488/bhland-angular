@@ -1,4 +1,4 @@
-interface BHBaseControlType{
+export interface BHBaseControlType{
     name: string;
     displayName: string;
     sequenceNumber: number;

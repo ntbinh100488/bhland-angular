@@ -1,6 +1,9 @@
 // Email
+
+import { BHBaseControlType } from "./base-control-type";
+
 // Tel
-interface BHMaskControlType extends BHBaseControlType {    
+export interface BHMaskControlType extends BHBaseControlType {    
     placeholder: string;
     required: boolean;
     pattern: string;

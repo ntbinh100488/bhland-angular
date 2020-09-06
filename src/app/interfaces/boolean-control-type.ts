@@ -1,2 +1,4 @@
-interface BHBooleanControlType extends BHBaseControlType {
+import { BHBaseControlType } from "./base-control-type";
+
+export interface BHBooleanControlType extends BHBaseControlType {
 }

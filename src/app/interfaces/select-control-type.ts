@@ -1,23 +1,25 @@
-interface BHSelectControlType extends BHBaseControlType {  
+import { BHBaseControlType } from "./base-control-type";
+
+export interface BHSelectControlType extends BHBaseControlType {  
     placeHolder: string;  
     required: boolean;  
     optionItems: BHSelectControlOptionItems[];
     dataSource: BHSelectControlDataSource;
 }
 
-interface BHSelectControlOptionItems{
+export interface BHSelectControlOptionItems{
     value: any;
     displayValue: string;
 }
 
-interface BHSelectControlDataSource{
+export interface BHSelectControlDataSource{
     entityPluralName: string;
     displayFieldName: string;
     valueFieldName: string;
     filter: BHControlDataSourceFilter[];
 }
 
-interface BHControlDataSourceFilter{
+export interface BHControlDataSourceFilter{
     fieldName: string;
     operator: string;
     fieldValue: any;

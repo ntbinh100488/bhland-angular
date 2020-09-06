@@ -1,5 +1,10 @@
 
 import {formControlTypes} from '../contants/form-control-types';
+import { BHTextControlType } from '../interfaces/text-control-type';
+import { BHBooleanControlType } from '../interfaces/boolean-control-type';
+import { BHSelectControlType } from '../interfaces/select-control-type';
+import { BHNumberControlType } from '../interfaces/number-control-type';
+import { BHRadioControlType } from '../interfaces/radio-control-type';
 
 let idField: BHTextControlType =  {
     name: 'id',

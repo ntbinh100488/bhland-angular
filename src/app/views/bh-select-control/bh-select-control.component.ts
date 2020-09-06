@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { BhCoreService } from '../../services/bh-core.service'
+import { BHSelectControlOptionItems, BHSelectControlDataSource } from '../../interfaces/select-control-type';
 
 @Component({
   selector: 'app-bh-select-control',
