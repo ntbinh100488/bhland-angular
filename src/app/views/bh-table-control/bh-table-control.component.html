@@ -6,53 +6,35 @@
              <div class="card-body">
                 <table class="table table-responsive-sm table-striped">
                    <thead>
-                      <tr>
-                        <th>Username</th>
-                        <th>Date registered</th>
-                        <th>Role</th>
-                        <th>Status</th>
-                      </tr>
+                        <tr>
+                            
+                            <th *ngFor="let tableColumnItem of tableColumns; let tableColumnItemIndex = index">{{tableColumnItem.columnDisplayName}}</th>
+                            <!-- <th>Date registered</th>
+                            <th>Role</th>
+                            <th>Status</th> -->
+                        </tr>
                    </thead>
                    <tbody>
-                      <tr>
-                         <td>Yiorgos Avraamu</td>
-                         <td>2012/01/01</td>
-                         <td>Member</td>
-                         <td><span class="badge badge-success">Active</span></td>
-                      </tr>
-                      <tr>
-                         <td>Avram Tarasios</td>
-                         <td>2012/02/01</td>
-                         <td>Staff</td>
-                         <td><span class="badge badge-danger">Banned</span></td>
-                      </tr>
-                      <tr>
-                         <td>Quintin Ed</td>
-                         <td>2012/02/01</td>
-                         <td>Admin</td>
-                         <td><span class="badge badge-secondary">Inactive</span></td>
-                      </tr>
-                      <tr>
-                         <td>Enéas Kwadwo</td>
-                         <td>2012/03/01</td>
-                         <td>Member</td>
-                         <td><span class="badge badge-warning">Pending</span></td>
-                      </tr>
-                      <tr>
-                         <td>Agapetus Tadeáš</td>
-                         <td>2012/01/21</td>
-                         <td>Staff</td>
-                         <td><span class="badge badge-success">Active</span></td>
-                      </tr>
+                        <tr *ngFor="let tableDataItem of tableData; let tableDataItemIndex = index">
+                            <td *ngFor="let tableDataColumnItem of tableColumns; let tableDataColumnItemIndex = index">
+                                {{populateColumnData(tableDataItem, tableDataColumnItem)}}
+                            </td>
+                        </tr>
                    </tbody>
                 </table>
                 <ul class="pagination">
-                   <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-                   <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                   <li class="page-item"><a class="page-link" href="#">2</a></li>
-                   <li class="page-item"><a class="page-link" href="#">3</a></li>
-                   <li class="page-item"><a class="page-link" href="#">4</a></li>
-                   <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                   <li class="page-item" (click)="rePaging($event, 1)"><a class="page-link">Prev</a></li>
+
+                   <li class="page-item" 
+                        [ngClass]="{'active': numberOfPageItem===(tablePaging.currentPageNumber)}" 
+                        *ngFor="let numberOfPageItem of numberOfPages; let numberOfPageItemIndex = index"
+                        (click)="rePaging($event, numberOfPageItem)">
+                        <a class="page-link">{{numberOfPageItem}}</a>
+                    </li>
+
+                   <li class="page-item">
+                       <a class="page-link">Next</a>
+                    </li>
                 </ul>
              </div>
           </div>

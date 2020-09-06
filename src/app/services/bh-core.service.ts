@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { entitySchema } from '../schemas/entitySchema';
 import { HttpClient, HttpHeaders, HttpUrlEncodingCodec} from '@angular/common/http';
-import { BHControlDataSourceFilter } from '../interfaces/select-control-type';
+import { BHControlDataSourceFilter, BHControlDataSourcePaging } from '../interfaces/select-control-type';
 
 @Injectable({
 	providedIn: 'root'
@@ -61,6 +61,26 @@ export class BhCoreService {
                 url += filterStr;
             });
         }
+        this.http.get<any>(url).subscribe(data => {
+            callback(data);
+        })
+    }
+
+    getdataSourceDataAndPaging(route: string, pagingFilter: BHControlDataSourcePaging, callback: any): any{
+        let baseUrl = 'http://localhost:3000/' + 'api/' + route;
+        let url = baseUrl;
+        if(pagingFilter){
+            let filterStr = `?filter[skip]=${pagingFilter.skip}&filter[limit]=${pagingFilter.limit}`;
+            url += filterStr;
+        }
+        this.http.get<any>(url).subscribe(data => {
+            callback(data);
+        })
+    }
+
+    countDataSourceData(route: string, callback: any): any{
+        let baseUrl = 'http://localhost:3000/' + 'api/' + route + '/count';
+        let url = baseUrl;
         this.http.get<any>(url).subscribe(data => {
             callback(data);
         })

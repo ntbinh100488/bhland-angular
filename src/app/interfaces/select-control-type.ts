@@ -24,3 +24,8 @@ export interface BHControlDataSourceFilter{
     operator: string;
     fieldValue: any;
 }
+
+export interface BHControlDataSourcePaging{
+    skip: number;
+    limit: number;
+}

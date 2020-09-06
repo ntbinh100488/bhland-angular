@@ -5,6 +5,7 @@ import { BHBooleanControlType } from '../interfaces/boolean-control-type';
 import { BHSelectControlType } from '../interfaces/select-control-type';
 import { BHNumberControlType } from '../interfaces/number-control-type';
 import { BHRadioControlType } from '../interfaces/radio-control-type';
+import { tableConfigs } from '../contants/table-configs';
 
 let idField: BHTextControlType =  {
     name: 'id',
@@ -19,12 +20,24 @@ let idField: BHTextControlType =  {
     readonly: false
 };
 let descriptionField: BHTextControlType =  {
-    name: 'timeOnly',
-    displayName: 'timeOnly',
+    name: 'description',
+    displayName: 'Description',
     sequenceNumber: 1,
     type: formControlTypes.textArea,
-    placeholder: 'timeOnly',
+    placeholder: 'descriptionField',
     required: true,
+    minLength: 3,
+    maxLength: 20,
+    hidden: false,
+    readonly: false
+};
+let testField: BHTextControlType =  {
+    name: 'test',
+    displayName: 'Test',
+    sequenceNumber: 2,
+    type: formControlTypes.textBox,
+    placeholder: 'Test',
+    required: false,
     minLength: 3,
     maxLength: 20,
     hidden: false,
@@ -104,13 +117,14 @@ let radioListField: BHRadioControlType =  {
     }
 };
 let entityControls: (BHTextControlType|BHBooleanControlType|BHSelectControlType)[] = [
-    idField,
+    // idField,
     descriptionField,
-    checkBoxField,
-    numberField,
-    rangeField,
-    selectListField,
-    radioListField
+    testField
+    // checkBoxField,
+    // numberField,
+    // rangeField,
+    // selectListField,
+    // radioListField
 ];
 
 export const entitySchema = [{
@@ -124,6 +138,6 @@ export const entitySchema = [{
         
     },
     grid:{
-
+        paging: tableConfigs
     }
 }]
