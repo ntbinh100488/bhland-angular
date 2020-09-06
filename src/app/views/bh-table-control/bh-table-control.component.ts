@@ -74,16 +74,30 @@ export class BhTableControlComponent implements OnInit {
         this.currentPageNumber = pageNumber;
         this.prevPageNumber = this.currentPageNumber === 1 ? 1 : (this.currentPageNumber - 1);
         this.nextPageNumber = this.currentPageNumber + 1;
+        this.setNumberOfPages();
+
         let skipNumber = (this.currentPageNumber - 1) * this.tablePaging.limit;
         this.tablePaging.skip = skipNumber;
         this.bhCoreService.getdataSourceDataAndPaging(this.entitySchema.plural, this.tablePaging, this.populateData.bind(this));
     }
 
-    setTotalData(countDataSourceDataResult): void{
+    setTotalData(countDataSourceDataResult: { count: number; }): void{
         this.totalCountData = countDataSourceDataResult.count;
         let numberPage = Math.ceil(this.totalCountData / this.tablePaging.limit);
-        this.lastPageNumber = numberPage;
-        this.numberOfPages = Array.from({length: numberPage}, (_, i) => i + 1);
+        this.lastPageNumber = numberPage > tableConfigs.paging.pagingMaximumPage 
+            ? tableConfigs.paging.pagingMaximumPage 
+            : numberPage;
+        this.setNumberOfPages();
+    }
+
+    setNumberOfPages(){
+        if(this.currentPageNumber < tableConfigs.paging.pagingMinimumPageNextTo){
+            this.numberOfPages = this.bhCommonService.createArrayNumberFromRange(1, this.currentPageNumber + tableConfigs.paging.pagingMinimumPageNextTo);
+        }else if(this.currentPageNumber > (this.lastPageNumber - tableConfigs.paging.pagingMinimumPageNextTo)){
+            this.numberOfPages = this.bhCommonService.createArrayNumberFromRange(this.lastPageNumber - tableConfigs.paging.pagingMinimumPageNextTo, this.lastPageNumber);
+        }else{
+            this.numberOfPages = this.bhCommonService.createArrayNumberFromRange(this.currentPageNumber - tableConfigs.paging.pagingMinimumPageNextTo, this.currentPageNumber + tableConfigs.paging.pagingMinimumPageNextTo);
+        }
     }
 }
 

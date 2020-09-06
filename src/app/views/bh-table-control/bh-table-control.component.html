@@ -19,8 +19,8 @@
                    </tbody>
                 </table>
                 <ul class="pagination">
-                   <li class="page-item" (click)="rePaging($event, 1)"><a class="page-link">First</a></li>
-                   <li class="page-item" (click)="rePaging($event, prevPageNumber)"><a class="page-link">Prev</a></li>
+                   <li class="page-item active" (click)="rePaging($event, 1)"><a class="page-link">First</a></li>
+                   <li class="page-item disabled" (click)="rePaging($event, prevPageNumber)"><a class="page-link">Prev</a></li>
 
                    <li class="page-item" 
                         [ngClass]="{'active': numberOfPageItem===currentPageNumber}" 
@@ -28,8 +28,8 @@
                         (click)="rePaging($event, numberOfPageItem)">
                         <a class="page-link">{{numberOfPageItem}}</a>
                     </li>
-                    <li class="page-item" (click)="rePaging($event, nextPageNumber)"><a class="page-link">Next</a></li>
-                   <li class="page-item" (click)="rePaging($event, lastPageNumber)"><a class="page-link">Last</a></li>
+                    <li class="page-item disabled" (click)="rePaging($event, nextPageNumber)"><a class="page-link">Next</a></li>
+                   <li class="page-item active" (click)="rePaging($event, lastPageNumber)"><a class="page-link">Last</a></li>
                 </ul>
              </div>
           </div>
