@@ -10,6 +10,7 @@ import { HeroDetailModule} from '../hero-detail/hero-detail.module';
 import { HeroDetailRoutingModule} from '../hero-detail/hero-detail-routing.module';
 import { FormBuilderModule} from '../form-builder/form-builder.module';
 import { FormBuilderRoutingModule} from '../form-builder/form-builder-routing.module';
+import { BhTableControlModule } from '../bh-table-control/bh-table-control.module';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { FormBuilderRoutingModule} from '../form-builder/form-builder-routing.mo
     HeroDetailModule,
     FormBuilderRoutingModule,
     FormBuilderModule,
+    BhTableControlModule,
     ButtonsModule.forRoot()
   ],
   declarations: [ NoteComponent ]

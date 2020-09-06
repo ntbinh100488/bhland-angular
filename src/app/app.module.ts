@@ -42,6 +42,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { HeroDetailModule } from './views/hero-detail/hero-detail.module';
 import { FormBuilderModule } from './views/form-builder/form-builder.module';
+import { BhTableControlModule } from './views/bh-table-control/bh-table-control.module';
 
 @NgModule({
   imports: [
@@ -56,6 +57,7 @@ import { FormBuilderModule } from './views/form-builder/form-builder.module';
     PerfectScrollbarModule,
     HeroDetailModule,
     FormBuilderModule,
+    BhTableControlModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule
