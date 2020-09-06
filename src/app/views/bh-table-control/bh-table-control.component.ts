@@ -24,6 +24,10 @@ export class BhTableControlComponent implements OnInit {
     public tablePaging: TablePagingFilter;
     public totalCountData: number;
     public numberOfPages: number[];
+    public currentPageNumber: number = 1;
+    public prevPageNumber: number = 1;
+    public nextPageNumber: number = 2;
+    public lastPageNumber: number = 0;
 
     constructor(
         private router: Router,
@@ -49,7 +53,6 @@ export class BhTableControlComponent implements OnInit {
         this.tablePaging = {
             limit: this.pageSize ?? tableConfigs.paging.pageSize,
             skip: 0,
-            currentPageNumber: 1
         }
         this.bhCoreService.countDataSourceData(this.entitySchema.plural, this.setTotalData.bind(this));
         this.bhCoreService.getdataSourceDataAndPaging(this.entitySchema.plural, this.tablePaging, this.populateData.bind(this));
@@ -66,14 +69,12 @@ export class BhTableControlComponent implements OnInit {
 
     rePaging(event: any, pageNumber: number): void{
         console.log(pageNumber);
-        if(this.tablePaging.currentPageNumber === pageNumber) return;
+        if(this.currentPageNumber === pageNumber || pageNumber > this.lastPageNumber) return;
 
-        this.tablePaging.currentPageNumber = pageNumber;
-        // 1 - 0
-        // 2 - 2
-        // 3 - 4
-        // 4 - 6
-        let skipNumber = (this.tablePaging.currentPageNumber - 1) * this.tablePaging.limit;
+        this.currentPageNumber = pageNumber;
+        this.prevPageNumber = this.currentPageNumber === 1 ? 1 : (this.currentPageNumber - 1);
+        this.nextPageNumber = this.currentPageNumber + 1;
+        let skipNumber = (this.currentPageNumber - 1) * this.tablePaging.limit;
         this.tablePaging.skip = skipNumber;
         this.bhCoreService.getdataSourceDataAndPaging(this.entitySchema.plural, this.tablePaging, this.populateData.bind(this));
     }
@@ -81,12 +82,12 @@ export class BhTableControlComponent implements OnInit {
     setTotalData(countDataSourceDataResult): void{
         this.totalCountData = countDataSourceDataResult.count;
         let numberPage = Math.ceil(this.totalCountData / this.tablePaging.limit);
-        this.numberOfPages = Array(numberPage > tableConfigs.paging.pagingMaximumPage ? tableConfigs.paging.pagingMaximumPage : numberPage).fill().map((x,i)=>++i); // [0,1,2,3,4];
+        this.lastPageNumber = numberPage;
+        this.numberOfPages = Array.from({length: numberPage}, (_, i) => i + 1);
     }
 }
 
 interface TablePagingFilter{
-    currentPageNumber: number;
     skip: number;
     limit: number;
 }

@@ -7,11 +7,7 @@
                 <table class="table table-responsive-sm table-striped">
                    <thead>
                         <tr>
-                            
                             <th *ngFor="let tableColumnItem of tableColumns; let tableColumnItemIndex = index">{{tableColumnItem.columnDisplayName}}</th>
-                            <!-- <th>Date registered</th>
-                            <th>Role</th>
-                            <th>Status</th> -->
                         </tr>
                    </thead>
                    <tbody>
@@ -23,18 +19,17 @@
                    </tbody>
                 </table>
                 <ul class="pagination">
-                   <li class="page-item" (click)="rePaging($event, 1)"><a class="page-link">Prev</a></li>
+                   <li class="page-item" (click)="rePaging($event, 1)"><a class="page-link">First</a></li>
+                   <li class="page-item" (click)="rePaging($event, prevPageNumber)"><a class="page-link">Prev</a></li>
 
                    <li class="page-item" 
-                        [ngClass]="{'active': numberOfPageItem===(tablePaging.currentPageNumber)}" 
+                        [ngClass]="{'active': numberOfPageItem===currentPageNumber}" 
                         *ngFor="let numberOfPageItem of numberOfPages; let numberOfPageItemIndex = index"
                         (click)="rePaging($event, numberOfPageItem)">
                         <a class="page-link">{{numberOfPageItem}}</a>
                     </li>
-
-                   <li class="page-item">
-                       <a class="page-link">Next</a>
-                    </li>
+                    <li class="page-item" (click)="rePaging($event, nextPageNumber)"><a class="page-link">Next</a></li>
+                   <li class="page-item" (click)="rePaging($event, lastPageNumber)"><a class="page-link">Last</a></li>
                 </ul>
              </div>
           </div>
