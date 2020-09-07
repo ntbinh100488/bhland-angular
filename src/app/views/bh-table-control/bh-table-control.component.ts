@@ -28,6 +28,8 @@ export class BhTableControlComponent implements OnInit {
     public prevPageNumber: number = 1;
     public nextPageNumber: number = 2;
     public lastPageNumber: number = 0;
+    public selectedRecord: any;
+    public selectedRecordIndex: number;
 
     constructor(
         private router: Router,
@@ -98,6 +100,37 @@ export class BhTableControlComponent implements OnInit {
         }else{
             this.numberOfPages = this.bhCommonService.createArrayNumberFromRange(this.currentPageNumber - tableConfigs.paging.pagingMinimumPageNextTo, this.currentPageNumber + tableConfigs.paging.pagingMinimumPageNextTo);
         }
+    }
+
+    selectTableDataRecord(tableDataItem: any, tableDataItemIndex: number):void{
+        if(this.selectedRecordIndex === tableDataItemIndex){
+            this.selectedRecord = undefined;
+            this.selectedRecordIndex = undefined;
+            return;
+        }
+         
+        this.selectedRecord = tableDataItem;
+        this.selectedRecordIndex = tableDataItemIndex;
+    }
+
+    createEnity(): void{
+        console.log('createEnity');
+        // navigate to form
+    }
+
+    editEntity(tableDataItem: any): void{
+        console.log('editEntity');
+        // navigate to form with the ID
+        // ?id=1
+    }
+
+    deleteEntity(tableDataItem: any): void{
+        console.log('deleteEntity');
+        // show modal confirm
+
+        // make a delete request
+
+        // remove local record 
     }
 }
 

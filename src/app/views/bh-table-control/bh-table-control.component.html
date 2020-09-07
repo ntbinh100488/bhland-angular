@@ -2,16 +2,26 @@
     <div class="row">
        <div class="col-12">
           <div class="card">
-             <div class="card-header"> Striped Table</div>
+             <div class="card-header">
+                <button type="button" class="btn btn-md btn-primary" (click)="createEnity()">
+                    <i class="fa fa-plus-square mr-2" ></i>Create
+                </button>
+                <button type="button" class="btn btn-md btn-secondary" [disabled]="!selectedRecord" (click)="editEntity()">
+                    <i class="fa fa-edit mr-2"></i>Edit
+                </button>
+                <button type="button" class="btn btn-md btn-danger" [disabled]="!selectedRecord" (click)="deleteEntity()">
+                    <i class="fa fa-remove mr-2"></i>Delete
+                </button>
+             </div>
              <div class="card-body">
-                <table class="table table-responsive-sm table-striped">
+                <table class="table table-responsive-sm table-hover">
                    <thead>
                         <tr>
                             <th *ngFor="let tableColumnItem of tableColumns; let tableColumnItemIndex = index">{{tableColumnItem.columnDisplayName}}</th>
                         </tr>
                    </thead>
                    <tbody>
-                        <tr *ngFor="let tableDataItem of tableData; let tableDataItemIndex = index">
+                        <tr *ngFor="let tableDataItem of tableData; let tableDataItemIndex = index" (click)="selectTableDataRecord(tableDataItem, tableDataItemIndex)">
                             <td *ngFor="let tableDataColumnItem of tableColumns; let tableDataColumnItemIndex = index">
                                 {{populateColumnData(tableDataItem, tableDataColumnItem)}}
                             </td>
