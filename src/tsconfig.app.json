@@ -5,7 +5,7 @@
     "baseUrl": "./",
     "module": "esnext",
     "target": "es5",
-    "types": [],
+    "types": ["jquery"],
     "paths": {
       "@angular/*": [
         "../node_modules/@angular/*"

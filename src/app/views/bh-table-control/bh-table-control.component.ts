@@ -5,6 +5,7 @@ import { BhCoreService } from '../../services/bh-core.service';
 import { BHTableColumn } from '../../interfaces/table-column-type';
 import { BHControlDataSourcePaging } from '../../interfaces/select-control-type';
 import { tableConfigs } from '../../contants/table-configs';
+declare var $: any;
 
 @Component({
   selector: 'app-bh-table-control',
@@ -115,6 +116,7 @@ export class BhTableControlComponent implements OnInit {
 
     createEnity(): void{
         console.log('createEnity');
+        this.showModal();
         // navigate to form
     }
 
@@ -131,6 +133,13 @@ export class BhTableControlComponent implements OnInit {
         // make a delete request
 
         // remove local record 
+    }
+
+    showModal():void {
+        $("#exampleModal").modal('show');
+    }
+    hideModal():void {
+        $("#exampleModal").modal('hide');
     }
 }
 
