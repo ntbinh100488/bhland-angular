@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BhCommonService } from '../../services/bh-common.service';
 import { BhCoreService } from '../../services/bh-core.service';
@@ -17,15 +17,11 @@ export class FormBuilderComponent implements OnInit {
         private bhCoreService: BhCoreService
     ) {}
 
-    @Input() entityId: number;
-
     entitySchemaProperties: any[] = [];
     entitySchema: any;
     entitySchemaName: string;
-    entityData: any = {};
-    description: string;
     noteForm = new FormGroup({});
-    firstFormControl: FormControl;
+    @Output() tableHideModal = new EventEmitter<any>();
 
     ngOnInit(): void {
         let href = this.router.url;   // this.router.url = '/note'
@@ -44,23 +40,24 @@ export class FormBuilderComponent implements OnInit {
             this.noteForm.addControl(entitySchemaPropertyItem.name, new FormControl('', frmFieldValidation));
             entitySchemaPropertyItem.formControl = this.noteForm.controls[entitySchemaPropertyItem.name];
         });
-        let boundSetFormValue = this.setFormValue.bind(this);
-        if(this.entityId){
-            this.bhCoreService.getFormData(this.entitySchema.plural, this.entityId, boundSetFormValue);
-        }else{
-            this.route.queryParams.subscribe(params => {
-                if(params['id']) {
-                    this.bhCoreService.getFormData(this.entitySchema.plural, params['id'], boundSetFormValue);
-                }
-            });
-        }
-        
-        this.firstFormControl = this.entitySchemaProperties[0].formControl;
+        this.initForm(undefined, undefined);
     }
 
-    setFormValue(formData: any){
+    initForm(entityId: number, callbackFunc: any) : void{
+        if(entityId){
+            this.bhCoreService.getFormData(this.entitySchema.plural, entityId, this.setFormValue.bind(this, callbackFunc));
+        }else{
+            this.noteForm.reset();
+        }
+    }
+
+    setFormValue(callbackFunc: any, formData: any){
         setTimeout(()=> {
+            this.noteForm.reset();
             this.noteForm.patchValue(formData);
+            if(callbackFunc){
+                callbackFunc();
+            }
         }, 0);
     }
 
@@ -69,7 +66,9 @@ export class FormBuilderComponent implements OnInit {
     }
 
     submit(){
-        console.log(this.noteForm.value);
         let result = this.bhCoreService.submitForm(this.entitySchema.plural, this.noteForm.value);
+    }
+    cancel(){
+        this.tableHideModal.emit('close modal');
     }
 }

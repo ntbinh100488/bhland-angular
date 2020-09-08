@@ -16,7 +16,7 @@ let idField: BHTextControlType =  {
     required: false,
     minLength: undefined,
     maxLength: undefined,
-    hidden: false,
+    hidden: true,
     readonly: false
 };
 let descriptionField: BHTextControlType =  {
@@ -117,7 +117,7 @@ let radioListField: BHRadioControlType =  {
     }
 };
 let entityControls: (BHTextControlType|BHBooleanControlType|BHSelectControlType)[] = [
-    // idField,
+    idField,
     descriptionField,
     testField
     // checkBoxField,

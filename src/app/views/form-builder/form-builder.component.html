@@ -77,7 +77,10 @@
                     [hasInvalid]="entitySchemaPropertyItem.formControl.invalid"
                 ></app-bh-radio-control>
         </div>
-        
-        <button class="btn btn-primary" type="submit" [disabled]="!noteForm.valid">Submit</button>
+
+        <div class="bh-formbuilder-footer">
+            <button class="btn btn-md btn-secondary mr-2" (click)="cancel()">Cancel</button>
+            <button class="btn btn-md btn-primary" type="submit" [disabled]="!noteForm.valid">Submit</button>
+        </div>
     </form>
 </div>

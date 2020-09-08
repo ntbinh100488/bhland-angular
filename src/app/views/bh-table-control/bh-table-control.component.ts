@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BhCommonService } from '../../services/bh-common.service';
 import { BhCoreService } from '../../services/bh-core.service';
 import { BHTableColumn } from '../../interfaces/table-column-type';
 import { BHControlDataSourcePaging } from '../../interfaces/select-control-type';
 import { tableConfigs } from '../../contants/table-configs';
+import { FormBuilderComponent } from '../form-builder/form-builder.component';
 declare var $: any;
 
 @Component({
@@ -15,6 +16,7 @@ declare var $: any;
 export class BhTableControlComponent implements OnInit {
 
     @Input() pageSize: number;
+    @ViewChild('formBuilder') formBuilder: FormBuilderComponent;
 
     entitySchemaProperties: any[] = [];
     entitySchema: any;
@@ -109,24 +111,22 @@ export class BhTableControlComponent implements OnInit {
             this.selectedRecordIndex = undefined;
             return;
         }
-         
         this.selectedRecord = tableDataItem;
         this.selectedRecordIndex = tableDataItemIndex;
     }
 
     createEnity(): void{
         console.log('createEnity');
+        this.formBuilder.initForm(undefined, undefined);
         this.showModal();
-        // navigate to form
     }
 
-    editEntity(tableDataItem: any): void{
+    editEntity(): void{
         console.log('editEntity');
-        // navigate to form with the ID
-        // ?id=1
+        this.formBuilder.initForm(this.selectedRecord?.id, this.showModal);
     }
 
-    deleteEntity(tableDataItem: any): void{
+    deleteEntity(): void{
         console.log('deleteEntity');
         // show modal confirm
 
@@ -139,13 +139,9 @@ export class BhTableControlComponent implements OnInit {
         $("#exampleModal").modal('show');
     }
     hideModal():void {
-        // $("#exampleModal").modal('hide');
-        // $("#exampleModal").modal('dispose');
         $("#exampleModal").removeClass('fade').modal('hide');
         $("#exampleModal").modal("dispose");
     }
-    // disposeModal():void {
-    // }
 }
 
 interface TablePagingFilter{
