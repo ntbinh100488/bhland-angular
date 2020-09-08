@@ -62,7 +62,7 @@ export class BhTableControlComponent implements OnInit {
     }
 
     populateData(dataSourceResult: any): void{
-        console.log(JSON.stringify(dataSourceResult));
+        // console.log(JSON.stringify(dataSourceResult));
         this.tableData = dataSourceResult;
     }
 
@@ -139,8 +139,13 @@ export class BhTableControlComponent implements OnInit {
         $("#exampleModal").modal('show');
     }
     hideModal():void {
-        $("#exampleModal").modal('hide');
+        // $("#exampleModal").modal('hide');
+        // $("#exampleModal").modal('dispose');
+        $("#exampleModal").removeClass('fade').modal('hide');
+        $("#exampleModal").modal("dispose");
     }
+    // disposeModal():void {
+    // }
 }
 
 interface TablePagingFilter{

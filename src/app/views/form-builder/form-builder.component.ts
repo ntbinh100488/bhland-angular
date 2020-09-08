@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BhCommonService } from '../../services/bh-common.service';
 import { BhCoreService } from '../../services/bh-core.service';
@@ -16,6 +16,8 @@ export class FormBuilderComponent implements OnInit {
         private bhCommonService: BhCommonService,
         private bhCoreService: BhCoreService
     ) {}
+
+    @Input() entityId: number;
 
     entitySchemaProperties: any[] = [];
     entitySchema: any;
@@ -43,12 +45,16 @@ export class FormBuilderComponent implements OnInit {
             entitySchemaPropertyItem.formControl = this.noteForm.controls[entitySchemaPropertyItem.name];
         });
         let boundSetFormValue = this.setFormValue.bind(this);
-        this.route.queryParams.subscribe(params => {
-            if(params['id']) {
-                let id = params['id'];
-                this.bhCoreService.getFormData(this.entitySchema.plural, id, boundSetFormValue);
-            }
-        });
+        if(this.entityId){
+            this.bhCoreService.getFormData(this.entitySchema.plural, this.entityId, boundSetFormValue);
+        }else{
+            this.route.queryParams.subscribe(params => {
+                if(params['id']) {
+                    this.bhCoreService.getFormData(this.entitySchema.plural, params['id'], boundSetFormValue);
+                }
+            });
+        }
+        
         this.firstFormControl = this.entitySchemaProperties[0].formControl;
     }
 
