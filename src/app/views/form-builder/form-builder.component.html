@@ -1,7 +1,7 @@
 <div class="card-body">
     <form [formGroup]="noteForm" (ngSubmit)="submit()">
         <div 
-            [hidden]="entitySchemaPropertyItem.isHidden" 
+            [hidden]="entitySchemaPropertyItem.hidden" 
             [ngSwitch]="entitySchemaPropertyItem.type"
             *ngFor="let entitySchemaPropertyItem of entitySchemaProperties; let entitySchemaPropertyItemIndex = index" 
             class="form-group">

@@ -55,8 +55,9 @@ export class BhTableControlComponent implements OnInit {
             }
         });
         this.tableColumns.sort((a, b) => (a.sequenceNumber > b.sequenceNumber) ? 1 : -1);
+        this.pageSize = this.pageSize ?? tableConfigs.paging.pageSize;
         this.tablePaging = {
-            limit: this.pageSize ?? tableConfigs.paging.pageSize,
+            limit: this.pageSize,
             skip: 0,
         }
         this.bhCoreService.countDataSourceData(this.entitySchema.plural, this.setTotalData.bind(this));
@@ -93,20 +94,34 @@ export class BhTableControlComponent implements OnInit {
         this.lastPageNumber = numberPage > tableConfigs.paging.pagingMaximumPage 
             ? tableConfigs.paging.pagingMaximumPage 
             : numberPage;
+        
         this.setNumberOfPages();
+        if(this.currentPageNumber > this.lastPageNumber){
+            this.rePaging(undefined, this.lastPageNumber);
+        }
     }
 
     setNumberOfPages(){
+        let rightNextTo = this.currentPageNumber + tableConfigs.paging.pagingMinimumPageNextTo;
+        let leftLastPageTo = this.lastPageNumber - tableConfigs.paging.pagingMinimumPageNextTo;
+
         if(this.currentPageNumber < tableConfigs.paging.pagingMinimumPageNextTo){
-            let lastPageNumberNextTo = this.currentPageNumber + tableConfigs.paging.pagingMinimumPageNextTo;
-            
-            this.numberOfPages = this.bhCommonService.createArrayNumberFromRange(1, this.lastPageNumber <= lastPageNumberNextTo ? this.lastPageNumber : lastPageNumberNextTo);
-        }else if(this.currentPageNumber > (this.lastPageNumber - tableConfigs.paging.pagingMinimumPageNextTo)){
-            this.numberOfPages = this.bhCommonService.createArrayNumberFromRange((this.lastPageNumber - tableConfigs.paging.pagingMinimumPageNextTo) < this.currentPageNumber ? this.currentPageNumber : (this.lastPageNumber - tableConfigs.paging.pagingMinimumPageNextTo), this.lastPageNumber);
+            let lastPageNumberNextTo = rightNextTo;
+            this.numberOfPages = this.bhCommonService.createArrayNumberFromRange(1, 
+                this.lastPageNumber <= lastPageNumberNextTo 
+                    ? this.lastPageNumber 
+                    : lastPageNumberNextTo);
+
+        }else if(this.currentPageNumber > leftLastPageTo){
+            let fromPageNumber = leftLastPageTo < 1 
+                ? 1 
+                : (leftLastPageTo < this.currentPageNumber) ? leftLastPageTo : this.currentPageNumber;
+            this.numberOfPages = this.bhCommonService.createArrayNumberFromRange(fromPageNumber, this.lastPageNumber);
         }else{
             let leftNextTo = this.currentPageNumber - tableConfigs.paging.pagingMinimumPageNextTo;
-            let rightNextTo = this.currentPageNumber + tableConfigs.paging.pagingMinimumPageNextTo;
-            this.numberOfPages = this.bhCommonService.createArrayNumberFromRange(leftNextTo < 1 ? 1 : leftNextTo, rightNextTo > this.lastPageNumber ? this.lastPageNumber : rightNextTo);
+            let fromPageNumber = leftNextTo < 1 ? 1 : leftNextTo;
+            let toPageNumber = rightNextTo > this.lastPageNumber ? this.lastPageNumber : rightNextTo;
+            this.numberOfPages = this.bhCommonService.createArrayNumberFromRange(fromPageNumber, toPageNumber);
         }
     }
 
@@ -159,7 +174,10 @@ export class BhTableControlComponent implements OnInit {
 
     createdCallback(createdEntity: any): void{
         console.log('createdCallback');
-        this.tableData.push(createdEntity);
+        if(this.tableData.length < this.pageSize){
+            this.tableData.push(createdEntity);
+        }
+        this.bhCoreService.countDataSourceData(this.entitySchema.plural, this.setTotalData.bind(this));
     }
     editedCallback(editedEntity: any): void{
         console.log('editedEntity');
@@ -174,6 +192,8 @@ export class BhTableControlComponent implements OnInit {
             const deletedEntityIndex = this.tableData.findIndex((obj => obj.id === this.selectedRecord.id));
             if(deletedEntityIndex > -1){
                 this.tableData.splice(deletedEntityIndex, 1);
+                this.clearSelectedRecord();
+                this.bhCoreService.countDataSourceData(this.entitySchema.plural, this.setTotalData.bind(this));
             }
         }
         this.hideDeleteModal();
