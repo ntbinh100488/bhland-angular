@@ -76,6 +76,7 @@ export class BhTableControlComponent implements OnInit {
         console.log(pageNumber);
         if(this.currentPageNumber === pageNumber || pageNumber > this.lastPageNumber) return;
 
+        this.clearSelectedRecord();
         this.currentPageNumber = pageNumber;
         this.prevPageNumber = this.currentPageNumber === 1 ? 1 : (this.currentPageNumber - 1);
         this.nextPageNumber = this.currentPageNumber + 1;
@@ -107,12 +108,16 @@ export class BhTableControlComponent implements OnInit {
 
     selectTableDataRecord(tableDataItem: any, tableDataItemIndex: number):void{
         if(this.selectedRecordIndex === tableDataItemIndex){
-            this.selectedRecord = undefined;
-            this.selectedRecordIndex = undefined;
+            this.clearSelectedRecord();
             return;
         }
         this.selectedRecord = tableDataItem;
         this.selectedRecordIndex = tableDataItemIndex;
+    }
+
+    clearSelectedRecord():void{
+        this.selectedRecord = undefined;
+        this.selectedRecordIndex = undefined;
     }
 
     createEnity(): void{
@@ -128,19 +133,43 @@ export class BhTableControlComponent implements OnInit {
 
     deleteEntity(): void{
         console.log('deleteEntity');
-        // show modal confirm
-
         // make a delete request
 
         // remove local record 
     }
 
     showModal():void {
-        $("#exampleModal").modal('show');
+        $("#entityDataModal").modal('show');
     }
-    hideModal():void {
-        $("#exampleModal").removeClass('fade').modal('hide');
-        $("#exampleModal").modal("dispose");
+    hideModal(fromChild: any):void {
+        $("#entityDataModal").modal('hide');
+        // $("#entityDataModal").modal("dispose");
+        this.clearSelectedRecord();
+    }
+    showDeleteModal():void {
+        $("#deleteEntityDataModal").modal('show');
+    }
+    hideDeleteModal():void {
+        $("#deleteEntityDataModal").modal('hide');
+    }
+
+    createdCallback(createdEntity: any): void{
+        console.log('createdCallback');
+        this.tableData.push(createdEntity);
+    }
+    editedCallback(editedEntity: any): void{
+        console.log('editedEntity');
+        const editedEntityIndex = this.tableData.findIndex((obj => obj.id === editedEntity.id));
+        if(editedEntityIndex > -1){
+            this.tableData[editedEntityIndex] = editedEntity;
+        }
+    }
+    deletedCallback(deletedEntity: any): void{
+        console.log('deletedEntity');
+        const deletedEntityIndex = this.tableData.findIndex((obj => obj.id === deletedEntity.id));
+        if(deletedEntityIndex > -1){
+            this.tableData.splice(deletedEntityIndex, 1);
+        }
     }
 }
 

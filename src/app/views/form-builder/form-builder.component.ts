@@ -21,7 +21,13 @@ export class FormBuilderComponent implements OnInit {
     entitySchema: any;
     entitySchemaName: string;
     noteForm = new FormGroup({});
-    @Output() tableHideModal = new EventEmitter<any>();
+    isCanceled: boolean = false;
+
+    @Output() tableHideModal = new EventEmitter<string>();
+    @Output() createdCallback = new EventEmitter<any>();
+    @Output() editedCallback = new EventEmitter<any>();
+    @Output() deletedCallback = new EventEmitter<any>();
+
 
     ngOnInit(): void {
         let href = this.router.url;   // this.router.url = '/note'
@@ -54,6 +60,7 @@ export class FormBuilderComponent implements OnInit {
     setFormValue(callbackFunc: any, formData: any){
         setTimeout(()=> {
             this.noteForm.reset();
+            this,this.isCanceled = false;
             this.noteForm.patchValue(formData);
             if(callbackFunc){
                 callbackFunc();
@@ -65,10 +72,15 @@ export class FormBuilderComponent implements OnInit {
         return this.noteForm.controls;
     }
 
-    submit(){
-        let result = this.bhCoreService.submitForm(this.entitySchema.plural, this.noteForm.value);
+    submit(): void{
+        if(this.isCanceled) return;
+
+        this.isCanceled = false;
+        let result = this.bhCoreService.submitForm(this.entitySchema.plural, this.noteForm.value, this.createdCallback, this.editedCallback);
+        this.tableHideModal.emit('close modal');
     }
     cancel(){
+        this.isCanceled = true;
         this.tableHideModal.emit('close modal');
     }
 }

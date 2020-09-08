@@ -1,4 +1,4 @@
-.modal-dialog {
+#entityDataModal .modal-dialog {
     width: 100%;
     height: 98%;
     margin-right: 20px;
@@ -7,8 +7,26 @@
     padding: 0;
 }
 
-.modal-content {
+#entityDataModal .modal-content {
     height: auto;
     min-height: 100%;
     border-radius: 0;
+}
+
+table tr.bh-table-selected{
+    border-left-style: solid;
+    border-left-width: initial;
+    border-left-color: #20a8d8;
+    border-right-style: solid;
+    border-right-width: initial;
+    border-right-color: #20a8d8;
+    background-color: rgba(0,0,21,.075);
+}
+table tr.bh-table-deselected{
+    border-left-style: solid;
+    border-left-width: initial;
+    border-left-color: #fff;
+    border-right-style: solid;
+    border-right-width: initial;
+    border-right-color: #fff;
 }

@@ -23,17 +23,21 @@ export class BhCoreService {
 		return entitySchemaItem.properties;
     }
     
-    submitForm(route: string, formData: any): any{
+    submitForm(route: string, formData: any, createdCallbackFunc: any, editedCallbackFunc: any): any{
         let method = formData.id ? 'PATCH' : 'POST';
         let url = 'http://localhost:3000/' + 'api/' + route;
         if(method == 'POST'){
             delete formData['id'];
             this.http.post<any>(url, formData).subscribe(data => {
-                let dataId = data.id;
+                if(createdCallbackFunc){
+                    createdCallbackFunc.emit(data);
+                }
             })
         }else if(method == 'PATCH'){    
             this.http.patch<any>(url, formData).subscribe(data => {
-                let dataId = data.id;
+                if(editedCallbackFunc){
+                    editedCallbackFunc.emit(data);
+                }
             })
         }
     }
