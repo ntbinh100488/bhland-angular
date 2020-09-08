@@ -98,11 +98,15 @@ export class BhTableControlComponent implements OnInit {
 
     setNumberOfPages(){
         if(this.currentPageNumber < tableConfigs.paging.pagingMinimumPageNextTo){
-            this.numberOfPages = this.bhCommonService.createArrayNumberFromRange(1, this.currentPageNumber + tableConfigs.paging.pagingMinimumPageNextTo);
+            let lastPageNumberNextTo = this.currentPageNumber + tableConfigs.paging.pagingMinimumPageNextTo;
+            
+            this.numberOfPages = this.bhCommonService.createArrayNumberFromRange(1, this.lastPageNumber <= lastPageNumberNextTo ? this.lastPageNumber : lastPageNumberNextTo);
         }else if(this.currentPageNumber > (this.lastPageNumber - tableConfigs.paging.pagingMinimumPageNextTo)){
-            this.numberOfPages = this.bhCommonService.createArrayNumberFromRange(this.lastPageNumber - tableConfigs.paging.pagingMinimumPageNextTo, this.lastPageNumber);
+            this.numberOfPages = this.bhCommonService.createArrayNumberFromRange((this.lastPageNumber - tableConfigs.paging.pagingMinimumPageNextTo) < this.currentPageNumber ? this.currentPageNumber : (this.lastPageNumber - tableConfigs.paging.pagingMinimumPageNextTo), this.lastPageNumber);
         }else{
-            this.numberOfPages = this.bhCommonService.createArrayNumberFromRange(this.currentPageNumber - tableConfigs.paging.pagingMinimumPageNextTo, this.currentPageNumber + tableConfigs.paging.pagingMinimumPageNextTo);
+            let leftNextTo = this.currentPageNumber - tableConfigs.paging.pagingMinimumPageNextTo;
+            let rightNextTo = this.currentPageNumber + tableConfigs.paging.pagingMinimumPageNextTo;
+            this.numberOfPages = this.bhCommonService.createArrayNumberFromRange(leftNextTo < 1 ? 1 : leftNextTo, rightNextTo > this.lastPageNumber ? this.lastPageNumber : rightNextTo);
         }
     }
 
@@ -134,7 +138,7 @@ export class BhTableControlComponent implements OnInit {
     deleteEntity(): void{
         console.log('deleteEntity');
         // make a delete request
-
+        this.bhCoreService.submitDeleteForm(this.entitySchema.plural, this.selectedRecord.id, this.deletedCallback.bind(this));
         // remove local record 
     }
 
@@ -166,10 +170,13 @@ export class BhTableControlComponent implements OnInit {
     }
     deletedCallback(deletedEntity: any): void{
         console.log('deletedEntity');
-        const deletedEntityIndex = this.tableData.findIndex((obj => obj.id === deletedEntity.id));
-        if(deletedEntityIndex > -1){
-            this.tableData.splice(deletedEntityIndex, 1);
+        if(deletedEntity.count > 0){
+            const deletedEntityIndex = this.tableData.findIndex((obj => obj.id === this.selectedRecord.id));
+            if(deletedEntityIndex > -1){
+                this.tableData.splice(deletedEntityIndex, 1);
+            }
         }
+        this.hideDeleteModal();
     }
 }
 

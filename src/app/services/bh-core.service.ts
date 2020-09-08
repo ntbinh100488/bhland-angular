@@ -42,6 +42,24 @@ export class BhCoreService {
         }
     }
 
+    submitDeleteForm(route: string, entityId: number, deletedCallbackFunc: any): any{
+        let headers = new Headers(
+        { 
+            'Content-Type': 'application/json',
+            'Accept': 'q=0.8;application/json;q=0.9'
+        });
+        let options = {
+            headers: headers
+        }
+
+        let deleteUrl = 'http://localhost:3000/' + 'api/' + route + `/${entityId}`;
+        this.http.delete<any>(deleteUrl).subscribe(data => {
+            if(deletedCallbackFunc){
+                deletedCallbackFunc(data);
+            }
+        })
+    }
+
     getFormData(route: string, entityId: number, cb: any): any{
         let url = 'http://localhost:3000/' + 'api/' + route + '/' + entityId;
         this.http.get<any>(url).subscribe(data => {
