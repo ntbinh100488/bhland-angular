@@ -27,7 +27,7 @@ let descriptionField: BHTextControlType =  {
     placeholder: 'descriptionField',
     required: true,
     minLength: 3,
-    maxLength: 20,
+    maxLength: 512,
     hidden: false,
     readonly: false
 };

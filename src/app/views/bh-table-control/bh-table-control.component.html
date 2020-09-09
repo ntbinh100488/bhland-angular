@@ -17,13 +17,17 @@
                 <table class="table table-hover">
                    <thead>
                         <tr>
-                            <th scope="col" *ngFor="let tableColumnItem of tableColumns; let tableColumnItemIndex = index">{{tableColumnItem.columnDisplayName}}</th>
+                            <th 
+                                [hidden]="tableColumnItem.hidden" 
+                                scope="col" 
+                                *ngFor="let tableColumnItem of tableColumns; let tableColumnItemIndex = index">{{tableColumnItem.columnDisplayName}}</th>
                         </tr>
                    </thead>
                    <tbody>
                         <tr *ngFor="let tableDataItem of tableData; let tableDataItemIndex = index" (click)="selectTableDataRecord(tableDataItem, tableDataItemIndex)" 
                             [ngClass]="{'bh-table-selected': tableDataItem.id === selectedRecord?.id, 'bh-table-deselected': tableDataItem.id !== selectedRecord?.id}">
-                            <td *ngFor="let tableDataColumnItem of tableColumns; let tableDataColumnItemIndex = index">
+                            <td [hidden]="tableDataColumnItem.hidden" 
+                                *ngFor="let tableDataColumnItem of tableColumns; let tableDataColumnItemIndex = index">
                                 {{populateColumnData(tableDataItem, tableDataColumnItem)}}
                             </td>
                         </tr>

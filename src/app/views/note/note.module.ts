@@ -6,8 +6,6 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 import { NoteComponent } from './note.component';
 import { NoteRoutingModule } from './note-routing.module';
-import { HeroDetailModule} from '../hero-detail/hero-detail.module';
-import { HeroDetailRoutingModule} from '../hero-detail/hero-detail-routing.module';
 import { FormBuilderModule} from '../form-builder/form-builder.module';
 import { FormBuilderRoutingModule} from '../form-builder/form-builder-routing.module';
 import { BhTableControlModule } from '../bh-table-control/bh-table-control.module';
@@ -18,8 +16,6 @@ import { BhTableControlModule } from '../bh-table-control/bh-table-control.modul
     NoteRoutingModule,
     ChartsModule,
     BsDropdownModule,
-    HeroDetailRoutingModule,
-    HeroDetailModule,
     FormBuilderRoutingModule,
     FormBuilderModule,
     BhTableControlModule,

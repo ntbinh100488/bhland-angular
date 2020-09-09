@@ -3,4 +3,5 @@ export interface BHTableColumn{
     columnDisplayName: string;
     columnType: string;
     sequenceNumber: number;
+    hidden: boolean;
 }

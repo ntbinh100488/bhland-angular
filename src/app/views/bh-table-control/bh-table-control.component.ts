@@ -51,7 +51,8 @@ export class BhTableControlComponent implements OnInit {
                 columnName: esps.name,
                 columnDisplayName: esps.displayName,
                 sequenceNumber: esps.sequenceNumber,
-                columnType: esps.type
+                columnType: esps.type,
+                hidden: esps.hidden
             }
         });
         this.tableColumns.sort((a, b) => (a.sequenceNumber > b.sequenceNumber) ? 1 : -1);
