@@ -22,7 +22,7 @@ let idField: BHTextControlType =  {
 let descriptionField: BHTextControlType =  {
     name: 'description',
     displayName: 'Description',
-    sequenceNumber: 1,
+    sequenceNumber: 2,
     type: formControlTypes.textArea,
     placeholder: 'descriptionField',
     required: true,
@@ -31,15 +31,42 @@ let descriptionField: BHTextControlType =  {
     hidden: false,
     readonly: false
 };
-let testField: BHTextControlType =  {
-    name: 'test',
-    displayName: 'Test',
-    sequenceNumber: 2,
+let staffIdField: BHSelectControlType =  {
+    name: 'staffId',
+    displayName: 'Staff',
+    placeHolder: 'Please select an option',
+    sequenceNumber: 1,
+    type: formControlTypes.selectList,
+    hidden: false,
+    readonly: false,
+    required: true,
+    optionItems: null,
+    dataSource: {
+        entityPluralName: 'staffs',
+        displayFieldName: 'name',
+        valueFieldName: 'id',
+        filter: null
+        // filter: [{
+        //     fieldName: 'description',
+        //     operator: 'eq',
+        //     fieldValue: '111'
+        // },
+        // {
+        //     fieldName: 'id',
+        //     operator: 'eq',
+        //     fieldValue: '4'
+        // }]
+    }
+};
+let nameField: BHTextControlType =  {
+    name: 'name',
+    displayName: 'Name',
+    sequenceNumber: 1,
     type: formControlTypes.textBox,
-    placeholder: 'Test',
-    required: false,
+    placeholder: 'Name',
+    required: true,
     minLength: 3,
-    maxLength: 20,
+    maxLength: 100,
     hidden: false,
     readonly: false
 };
@@ -116,21 +143,24 @@ let radioListField: BHRadioControlType =  {
         filter: null
     }
 };
-let entityControls: (BHTextControlType|BHBooleanControlType|BHSelectControlType)[] = [
+let noteEntityControls: (BHTextControlType|BHBooleanControlType|BHSelectControlType)[] = [
     idField,
     descriptionField,
-    testField
+    staffIdField
     // checkBoxField,
     // numberField,
     // rangeField,
     // selectListField,
     // radioListField
 ];
-
+let staffEntityControls: (BHTextControlType|BHBooleanControlType|BHSelectControlType)[] = [
+    idField,
+    nameField
+];
 export const entitySchema = [{
     name: "note",
     plural: "notes",
-    properties: entityControls,
+    properties: noteEntityControls,
     form:{
         
     },
@@ -140,4 +170,19 @@ export const entitySchema = [{
     grid:{
         paging: tableConfigs
     }
-}]
+},
+{
+    name: "staff",
+    plural: "staffs",
+    properties: staffEntityControls,
+    form:{
+        
+    },
+    list:{
+        
+    },
+    grid:{
+        paging: tableConfigs
+    }
+}
+]

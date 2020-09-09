@@ -46,6 +46,7 @@ export class FormBuilderComponent implements OnInit {
             this.noteForm.addControl(entitySchemaPropertyItem.name, new FormControl('', frmFieldValidation));
             entitySchemaPropertyItem.formControl = this.noteForm.controls[entitySchemaPropertyItem.name];
         });
+        this.entitySchemaProperties.sort((a, b) => (a.sequenceNumber > b.sequenceNumber) ? 1 : -1);
         this.initForm(undefined, undefined);
     }
 
