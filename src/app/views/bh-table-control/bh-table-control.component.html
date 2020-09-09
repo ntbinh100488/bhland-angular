@@ -18,16 +18,17 @@
                    <thead>
                         <tr>
                             <th 
+                                [class]="tableColumnItem.style?.grid?.header"
                                 [hidden]="tableColumnItem.hidden" 
                                 scope="col" 
-                                *ngFor="let tableColumnItem of tableColumns; let tableColumnItemIndex = index">{{tableColumnItem.columnDisplayName}}</th>
+                                *ngFor="let tableColumnItem of entitySchemaProperties; let tableColumnItemIndex = index">{{tableColumnItem.displayName}}</th>
                         </tr>
                    </thead>
                    <tbody>
                         <tr *ngFor="let tableDataItem of tableData; let tableDataItemIndex = index" (click)="selectTableDataRecord(tableDataItem, tableDataItemIndex)" 
                             [ngClass]="{'bh-table-selected': tableDataItem.id === selectedRecord?.id, 'bh-table-deselected': tableDataItem.id !== selectedRecord?.id}">
                             <td [hidden]="tableDataColumnItem.hidden" 
-                                *ngFor="let tableDataColumnItem of tableColumns; let tableDataColumnItemIndex = index">
+                                *ngFor="let tableDataColumnItem of entitySchemaProperties; let tableDataColumnItemIndex = index">
                                 {{populateColumnData(tableDataItem, tableDataColumnItem)}}
                             </td>
                         </tr>

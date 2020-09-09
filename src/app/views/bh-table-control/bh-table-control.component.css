@@ -30,3 +30,6 @@ table tr.bh-table-deselected{
     border-right-width: initial;
     border-right-color: #fff;
 }
+table thead th.width-twohundred-pixel{
+    width: 200px;
+}

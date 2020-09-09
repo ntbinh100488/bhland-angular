@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { BhCommonService } from '../../services/bh-common.service';
 import { BhCoreService } from '../../services/bh-core.service';
 import { BHTableColumn } from '../../interfaces/table-column-type';
-import { BHControlDataSourcePaging } from '../../interfaces/select-control-type';
 import { tableConfigs } from '../../contants/table-configs';
 import { FormBuilderComponent } from '../form-builder/form-builder.component';
+import { formControlTypes } from '../../contants/form-control-types';
 declare var $: any;
 
 @Component({
@@ -33,6 +33,7 @@ export class BhTableControlComponent implements OnInit {
     public lastPageNumber: number = 0;
     public selectedRecord: any;
     public selectedRecordIndex: number;
+    public fkDataSources: FkDataSource[] = [];
 
     constructor(
         private router: Router,
@@ -46,16 +47,17 @@ export class BhTableControlComponent implements OnInit {
         this.entitySchema = this.bhCoreService.getEntitySchema(schemaName);
         this.entitySchemaName = this.entitySchema.name;
         this.entitySchemaProperties = this.entitySchema.properties;
-        this.tableColumns = this.entitySchemaProperties.map(esps => {
-            return {
-                columnName: esps.name,
-                columnDisplayName: esps.displayName,
-                sequenceNumber: esps.sequenceNumber,
-                columnType: esps.type,
-                hidden: esps.hidden
-            }
+        
+        // FK
+        let fkEntitySchemas = this.entitySchemaProperties.filter(function(entitySchema) {
+            return entitySchema.dataSource !== undefined;
         });
-        this.tableColumns.sort((a, b) => (a.sequenceNumber > b.sequenceNumber) ? 1 : -1);
+        fkEntitySchemas.forEach(fkEntitySchemaItem => {
+            this.bhCoreService.getdataSourceData(fkEntitySchemaItem.dataSource.entityPluralName, undefined, this.pushFkDataSources.bind(this, fkEntitySchemaItem.dataSource.entityPluralName));
+        });
+        
+        this.entitySchemaProperties.sort((a, b) => (a.sequenceNumber > b.sequenceNumber) ? 1 : -1);
+
         this.pageSize = this.pageSize ?? tableConfigs.paging.pageSize;
         this.tablePaging = {
             limit: this.pageSize,
@@ -65,13 +67,30 @@ export class BhTableControlComponent implements OnInit {
         this.bhCoreService.getdataSourceDataAndPaging(this.entitySchema.plural, this.tablePaging, this.populateData.bind(this));
     }
 
+    pushFkDataSources(entitySchemaPluralName:string, dataResponse:any):void{
+        this.fkDataSources.push({
+            name: entitySchemaPluralName,
+            data: dataResponse
+        });
+    }
+
     populateData(dataSourceResult: any): void{
-        // console.log(JSON.stringify(dataSourceResult));
         this.tableData = dataSourceResult;
     }
 
-    populateColumnData(tableDataItem: any, tableDataColumnItem: BHTableColumn): any{
-        return tableDataItem[tableDataColumnItem.columnName];
+    populateColumnData(tableDataItem: any, tableDataColumnItem: any): any{
+        if(tableDataColumnItem.dataSource && (tableDataColumnItem.type === formControlTypes.selectList || tableDataColumnItem.type === formControlTypes.radioList)){
+            let idValue = tableDataItem[tableDataColumnItem.name];
+            if(!this.fkDataSources) return;
+
+            let fkColumnDs = this.fkDataSources.find(ds => ds.name === tableDataColumnItem.dataSource.entityPluralName);
+            if(fkColumnDs){
+                let dataItem = fkColumnDs.data.find(dI => dI.id === idValue);
+                return dataItem[tableDataColumnItem.dataSource.displayFieldName];
+            }
+        }
+
+        return tableDataItem[tableDataColumnItem.name];
     }
 
     rePaging(event: any, pageNumber: number): void{
@@ -204,4 +223,9 @@ export class BhTableControlComponent implements OnInit {
 interface TablePagingFilter{
     skip: number;
     limit: number;
+}
+
+interface FkDataSource{
+    name: string;
+    data: any[];
 }

@@ -56,6 +56,11 @@ let staffIdField: BHSelectControlType =  {
         //     operator: 'eq',
         //     fieldValue: '4'
         // }]
+    },
+    style:{
+        grid:{
+            header:"width-twohundred-pixel"
+        }
     }
 };
 let nameField: BHTextControlType =  {
@@ -145,8 +150,8 @@ let radioListField: BHRadioControlType =  {
 };
 let noteEntityControls: (BHTextControlType|BHBooleanControlType|BHSelectControlType)[] = [
     idField,
-    descriptionField,
-    staffIdField
+    staffIdField,
+    descriptionField
     // checkBoxField,
     // numberField,
     // rangeField,
