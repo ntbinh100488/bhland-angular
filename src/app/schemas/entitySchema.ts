@@ -29,7 +29,12 @@ let descriptionField: BHTextControlType =  {
     minLength: 3,
     maxLength: 512,
     hidden: false,
-    readonly: false
+    readonly: false,
+    style:{
+        grid:{
+            cell:"truncate"
+        }
+    }
 };
 let staffIdField: BHSelectControlType =  {
     name: 'staffId',

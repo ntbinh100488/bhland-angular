@@ -18,7 +18,7 @@
                    <thead>
                         <tr>
                             <th 
-                                [class]="tableColumnItem.style?.grid?.header"
+                                [class]="tableColumnItem.style?.grid?.header ? tableColumnItem.style?.grid?.header : ''"
                                 [hidden]="tableColumnItem.hidden" 
                                 scope="col" 
                                 *ngFor="let tableColumnItem of entitySchemaProperties; let tableColumnItemIndex = index">{{tableColumnItem.displayName}}</th>
