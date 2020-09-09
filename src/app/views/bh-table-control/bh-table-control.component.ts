@@ -96,7 +96,7 @@ export class BhTableControlComponent implements OnInit {
             : numberPage;
         
         this.setNumberOfPages();
-        if(this.currentPageNumber > this.lastPageNumber){
+        if(this.currentPageNumber > this.lastPageNumber && this.currentPageNumber > 1){
             this.rePaging(undefined, this.lastPageNumber);
         }
     }
