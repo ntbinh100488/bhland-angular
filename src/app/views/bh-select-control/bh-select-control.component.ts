@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { BhCoreService } from '../../services/bh-core.service'
 import { BHSelectControlOptionItems, BHSelectControlDataSource } from '../../interfaces/select-control-type';
+import { EventService } from '../../services/event.service';
 
 @Component({
   selector: 'app-bh-select-control',
@@ -30,7 +31,7 @@ export class BhSelectControlComponent implements OnInit {
     public displayFieldName: string;
     public valueFieldName: string;
 
-    constructor(private bhCoreService: BhCoreService) { }
+    constructor(private bhCoreService: BhCoreService, private eventService: EventService) { }
 
     ngOnInit(): void {
         if(this.optionItems) {
@@ -50,5 +51,18 @@ export class BhSelectControlComponent implements OnInit {
                 displayValue: dsItem[this.displayFieldName]
             }
         });
+    }
+
+    modelChanged($event:any){
+        console.log('modelChanged');
+        /*
+            Event Model
+                ControlName: 'city'
+                controlType: selectlist
+                EventType: 'change'
+                Value: '1'
+                parentGroup: parentGroup
+        */
+        // this.eventService.toggle({parentGroup: this.parentGroup, optionData: this.optionData, value: $event});
     }
 }

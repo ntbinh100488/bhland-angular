@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChildren, QueryList } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BhCommonService } from '../../services/bh-common.service';
 import { BhCoreService } from '../../services/bh-core.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { BhSelectControlComponent } from '../bh-select-control/bh-select-control.component';
 
 @Component({
     selector: 'app-form-builder',
@@ -27,7 +28,7 @@ export class FormBuilderComponent implements OnInit {
     @Output() createdCallback = new EventEmitter<any>();
     @Output() editedCallback = new EventEmitter<any>();
     @Output() deletedCallback = new EventEmitter<any>();
-
+    @ViewChildren(BhSelectControlComponent) selectControls: QueryList<BhSelectControlComponent>;
 
     ngOnInit(): void {
         let href = this.router.url;   // this.router.url = '/note'

@@ -4,6 +4,7 @@
         formControlName="{{controlName}}" 
         id="{{entitySchemaName}}-{{controlName}}"
         ngModel
+        (ngModelChange)="modelChanged($event)"
         class="form-control" >
             <option [value]="null">{{placeHolder}}</option>
             <option *ngFor="let optionDataItem of optionData; let optionDataItemIndex = index" [value]="optionDataItem.value">
