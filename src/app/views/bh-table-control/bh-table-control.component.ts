@@ -6,6 +6,7 @@ import { BHTableColumn } from '../../interfaces/table-column-type';
 import { tableConfigs } from '../../contants/table-configs';
 import { FormBuilderComponent } from '../form-builder/form-builder.component';
 import { formControlTypes } from '../../contants/form-control-types';
+import { PlacesService } from '../../services/places.service';
 declare var $: any;
 
 @Component({
@@ -38,7 +39,8 @@ export class BhTableControlComponent implements OnInit {
     constructor(
         private router: Router,
         private bhCommonService: BhCommonService,
-        private bhCoreService: BhCoreService
+        private bhCoreService: BhCoreService,
+        private placesService: PlacesService
     ) {}
 
     ngOnInit(): void {
@@ -218,6 +220,117 @@ export class BhTableControlComponent implements OnInit {
         }
         this.hideDeleteModal();
     }
+
+    // getOutsideCity(){
+    //     // this.placesService.getAllOutsideCityProvinces(function(cities){
+    //     //     console.log(JSON.stringify(cities));
+    //     // });
+
+    //     // "province_id":"89","province_name":"Tỉnh An Giang","province_type":"Tỉnh"
+    //     // this.placesService.getOutsideDistrictsByProvinceId('89', function(districts){
+    //     //     console.log(JSON.stringify(districts));
+    //     // });
+
+    //     // district_id":"883","district_name":"Thành phố Long Xuyên","district_type":"Thành phố"
+    //     // this.placesService.getOutsideWardByDistrictId('883', function(wards){
+    //     //     console.log(JSON.stringify(wards));
+    //     // });
+
+    //     // let localCity = {
+    //     //     name: 'Tỉnh An Giang',
+    //     //     cityType: 'Tỉnh'
+    //     // }
+    //     // this.placesService.createLocalCity(localCity, function(createdLocalCity){
+    //     //     console.log(JSON.stringify(createdLocalCity));
+    //     //     // {"name":"Tỉnh An Giang","cityType":"Tỉnh","id":19}
+    //     // });
+
+    //     // let localDistrict = {
+    //     //     name: 'Thành phố Long Xuyên',
+    //     //     districtType: 'Thành phố',
+    //     //     cityId: 19
+    //     // }
+    //     // this.placesService.createLocalDistrict(localDistrict, function(createdLocalDistrict){
+    //     //     console.log(JSON.stringify(createdLocalDistrict));
+    //     //     // {"name":"Thành phố Long Xuyên","districtType":"Thành phố","id":1,"cityId":19}
+    //     // });
+
+    //     // let localWards = [{
+    //     //     name: 'Phường Đông Xuyên',
+    //     //     wardType: 'Phường',
+    //     //     districtId: 1
+    //     // },
+    //     // {
+    //     //     name: 'Phường Mỹ Bình',
+    //     //     wardType: 'Phường',
+    //     //     districtId: 1
+    //     // }]
+    //     // this.placesService.createLocalWards(localWards, function(createdLocalWards){
+    //     //     console.log(JSON.stringify(createdLocalWards));
+    //     // });
+    // }
+
+    // initCityDistrictWardData(){
+    //     let me = this;
+    //     me.placesService.getAllOutsideCityProvinces(function(outsideCities){
+    //         // Filter outsideCities
+    //         /*  
+    //             "province_id":"89","province_name":"Tỉnh An Giang","province_type":"Tỉnh"
+    //             province_id":"87","province_name":"Tỉnh Đồng Tháp","province_type":"Tỉnh"
+    //             "province_id":"91","province_name":"Tỉnh Kiên Giang","province_type":"Tỉnh"
+    //             "province_id":"92","province_name":"Thành phố Cần Thơ","province_type":"Thành phố Trung ương"
+    //         */
+    //         let provinceIds = ['89', '87', '91', '92'];
+    //         let filterdOutsideCities = outsideCities.results.filter(function (city) {
+    //             return (city.province_id === "89" || city.province_id === "87" || city.province_id === "91" || city.province_id === "92");
+    //         });
+
+    //         // build local city
+    //         let localCities = filterdOutsideCities.map(city => {
+    //             return {
+    //                 name: city.province_name,
+    //                 cityType: city.province_type,
+    //                 province_id: city.province_id
+    //             }
+    //         });
+    //         localCities.forEach(localCity => {
+    //             let province_id:string = localCity['province_id'];
+    //             delete localCity['province_id'];
+    //             me.placesService.createLocalCity(localCity, function(createdCity){
+    //                 me.placesService.getOutsideDistrictsByProvinceId(province_id, function(outsideDistricts){
+    //                     // map local district
+    //                     let localDistricts = outsideDistricts.results.map(outsideDistrict =>{
+    //                         return{
+    //                             district_id: outsideDistrict.district_id,
+    //                             name: outsideDistrict.district_name,
+    //                             districtType: outsideDistrict.district_type,
+    //                             cityId: createdCity.id
+    //                         };
+    //                     });
+
+    //                     localDistricts.forEach(localDistrict => {
+    //                         let district_id = localDistrict['district_id'];
+    //                         delete localDistrict['district_id'];
+    //                         me.placesService.createLocalDistrict(localDistrict, function(createdLocalDistrict){
+    //                             me.placesService.getOutsideWardByDistrictId(district_id, function(outsideWards){
+    //                                 let localWards = outsideWards.results.map(outsideWard => {
+    //                                     return {
+    //                                         name: outsideWard.ward_name,
+    //                                         wardType: outsideWard.ward_type,
+    //                                         districtId: createdLocalDistrict.id
+    //                                     }
+    //                                 });
+    //                                 me.placesService.createLocalWards(localWards, function(createdLocalWards){
+
+    //                                 });
+    //                             });
+    //                         });
+    //                     });  
+    //                 });
+    //             });
+    //         });
+    //     });
+    // }
 }
 
 interface TablePagingFilter{
