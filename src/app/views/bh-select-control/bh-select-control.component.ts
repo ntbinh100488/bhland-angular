@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { BhCoreService } from '../../services/bh-core.service'
 import { BHSelectControlOptionItems, BHSelectControlDataSource } from '../../interfaces/select-control-type';
 import { EventService } from '../../services/event.service';
+import { FormBuilderComponent } from '../form-builder/form-builder.component';
 
 @Component({
   selector: 'app-bh-select-control',
@@ -31,7 +32,7 @@ export class BhSelectControlComponent implements OnInit {
     public displayFieldName: string;
     public valueFieldName: string;
 
-    constructor(private bhCoreService: BhCoreService, private eventService: EventService) { }
+    constructor(private bhCoreService: BhCoreService, private eventService: EventService, @Inject(FormBuilderComponent) private parent: FormBuilderComponent) { }
 
     ngOnInit(): void {
         if(this.optionItems) {
@@ -39,6 +40,11 @@ export class BhSelectControlComponent implements OnInit {
         }else if(this.dataSource){
             this.displayFieldName = this.dataSource.displayFieldName;
             this.valueFieldName = this.dataSource.valueFieldName;
+            // console.log('SelectControl ngOnInit');
+            // setTimeout(() => {
+            //     console.log('setTimeout eventService emit event');
+            //     this.eventService.toggle({parentGroup: this.parentGroup, optionData: this.optionData, value: ''});
+            // }, 2000);
             this.bhCoreService.getdataSourceData(this.dataSource.entityPluralName, this.dataSource.filter, this.populateData.bind(this));
         }
     }

@@ -14,11 +14,12 @@ export class NoteComponent implements OnInit {
     ngOnInit(): void {
         console.log("Note ngOnInit");
         this.eventService.change.subscribe(data => {
-            if(data != null && data != undefined && data != ''){
-                if(this.bhTable && this.bhTable.formBuilder && this.bhTable.formBuilder.selectControls){
-                    this.bhTable.formBuilder.selectControls.first.optionData = [];
-                }
-            }
+            console.log('Note change.subscribe');
+            // if(data != null && data != undefined && data != ''){
+            //     if(this.bhTable && this.bhTable.formBuilder && this.bhTable.formBuilder.selectControls){
+            //         this.bhTable.formBuilder.selectControls.first.optionData = [];
+            //     }
+            // }
         });
     }
 }
