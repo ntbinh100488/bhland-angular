@@ -19,19 +19,24 @@ export const navItems: INavData[] = [
         url: '/staff',
         icon: 'icon-user'
     },
-    {
-        name: 'Customers',
-        url: '/customer',
-        icon: 'icon-people'
-    },
+    // {
+    //     name: 'Customers',
+    //     url: '/customer',
+    //     icon: 'icon-people'
+    // },
     {
         title: true,
-        name: 'OTHER'
+        name: 'TOOLS'
     },
     {
         name: 'Notes',
         url: '/note',
         icon: 'icon-notebook'
+    },
+    {
+        name: 'Real Estate',
+        url: '/realestate',
+        icon: 'icon-picture'
     },
 ]
 
