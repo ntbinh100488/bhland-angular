@@ -62,7 +62,15 @@ export class FormBuilderComponent implements OnInit {
     setFormValue(callbackFunc: any, formData: any){
         setTimeout(()=> {
             this.noteForm.reset();
-            this,this.isCanceled = false;
+            this.isCanceled = false;
+            if(formData 
+                && this.entitySchema.codePrefix 
+                && formData.hasOwnProperty('code') 
+                && formData.hasOwnProperty('id') 
+                && !formData.code
+                && formData.id){
+                formData.code = `${this.entitySchema.codePrefix}-${formData.id}`;
+            }
             this.noteForm.patchValue(formData);
             if(callbackFunc){
                 callbackFunc();

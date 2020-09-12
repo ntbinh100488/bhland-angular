@@ -92,10 +92,86 @@ let valueField: BHNumberControlType =  {
     required: false,
     hidden: false,
     readonly: false,
-    minValue: 1,
-    maxValue: 100000,
     stepValue: 1
 }
+
+let cityIdField: BHSelectControlType =  {
+    name: 'cityId',
+    displayName: 'City',
+    placeHolder: 'Please select an option',
+    sequenceNumber: 8,
+    type: formControlTypes.selectList,
+    hidden: false,
+    readonly: false,
+    required: true,
+    optionItems: null,
+    dataSource: {
+        entityPluralName: 'cities',
+        displayFieldName: 'name',
+        valueFieldName: 'id',
+        filter: null
+    },
+    style:{
+        grid:{
+            header:"width-twohundred-pixel"
+        }
+    },
+    events:{
+        hasChangeEvent: true
+    }
+};
+
+let districtIdField: BHSelectControlType =  {
+    name: 'districtId',
+    displayName: 'District',
+    placeHolder: 'Please select an option',
+    sequenceNumber: 9,
+    type: formControlTypes.selectList,
+    hidden: false,
+    readonly: false,
+    required: true,
+    optionItems: null,
+    dataSource: {
+        entityPluralName: 'districts',
+        displayFieldName: 'name',
+        valueFieldName: 'id',
+        filter: null
+    },
+    style:{
+        grid:{
+            header:"width-twohundred-pixel"
+        }
+    },
+    events:{
+        hasChangeEvent: true
+    }
+};
+
+let wardIdField: BHSelectControlType =  {
+    name: 'wardId',
+    displayName: 'Ward',
+    placeHolder: 'Please select an option',
+    sequenceNumber: 10,
+    type: formControlTypes.selectList,
+    hidden: false,
+    readonly: false,
+    required: true,
+    optionItems: null,
+    dataSource: {
+        entityPluralName: 'wards',
+        displayFieldName: 'name',
+        valueFieldName: 'id',
+        filter: null
+    },
+    style:{
+        grid:{
+            header:"width-twohundred-pixel"
+        }
+    },
+    events:{
+        hasChangeEvent: true
+    }
+};
 
 let realEstateEntityControls: (BHTextControlType|BHBooleanControlType|BHSelectControlType)[] = [
     baseFields.idField,
@@ -105,12 +181,16 @@ let realEstateEntityControls: (BHTextControlType|BHBooleanControlType|BHSelectCo
     areaField,
     widthField,
     lengthField,
-    valueField
+    valueField,
+    cityIdField,
+    districtIdField,
+    wardIdField
 ];
 
 export const realestateSchema = {
     name: "realestate",
     plural: "realestates",
+    codePrefix: 'RLE',
     properties: realEstateEntityControls,
     form:{
     },

@@ -6,11 +6,16 @@ export interface BHBaseControlType{
     hidden: boolean;
     readonly: boolean;
     style?: BhPropertyStyle;
+    events?: BHControlEvent;
 }
 
 interface BhPropertyStyle{
     grid?: BhPropertyGridStyle;
     form?: BhPropertyFormStyle;
+}
+
+export interface BHControlEvent{
+    hasChangeEvent: boolean;
 }
 
 interface BhPropertyGridStyle{

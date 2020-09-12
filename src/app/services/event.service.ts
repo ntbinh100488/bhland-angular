@@ -1,15 +1,16 @@
 import { Injectable, Output, EventEmitter } from '@angular/core'
+import { BHFormControlEvent } from '../interfaces/form-control-event';
 
 @Injectable({
     providedIn: 'root'
-  })
+})
 export class EventService {
 
-    data:any;
+    data:BHFormControlEvent;
 
-    @Output() change: EventEmitter<any> = new EventEmitter();
+    @Output() change: EventEmitter<BHFormControlEvent> = new EventEmitter();
 
-    toggle(data:any) {
-        this.change.emit(data);
+    emitEvent(event:BHFormControlEvent) {
+        this.change.emit(event);
     }
 }
