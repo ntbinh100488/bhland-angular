@@ -33,3 +33,6 @@ table tr.bh-table-deselected{
 table thead th.width-twohundred-pixel{
     width: 200px;
 }
+table .bh-hide{
+    display: none !important;
+}

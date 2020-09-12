@@ -27,8 +27,9 @@
                    <tbody>
                         <tr *ngFor="let tableDataItem of tableData; let tableDataItemIndex = index" (click)="selectTableDataRecord(tableDataItem, tableDataItemIndex)" 
                             [ngClass]="{'bh-table-selected': tableDataItem.id === selectedRecord?.id, 'bh-table-deselected': tableDataItem.id !== selectedRecord?.id}">
-                            <td [hidden]="tableDataColumnItem.hidden" 
-                                *ngFor="let tableDataColumnItem of entitySchemaProperties; let tableDataColumnItemIndex = index">
+                            <td *ngFor="let tableDataColumnItem of entitySchemaProperties; let tableDataColumnItemIndex = index"
+                                [hidden]="tableDataColumnItem.hidden" 
+                                [class]="tableDataColumnItem.style?.grid?.column ? tableDataColumnItem.style?.grid?.column : ''">
                                 {{populateColumnData(tableDataItem, tableDataColumnItem)}}
                             </td>
                         </tr>

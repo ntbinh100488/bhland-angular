@@ -21,15 +21,21 @@ let codeField: BHTextControlType =  {
 
 let detailOneField: BHTextControlType =  {
     name: 'detailOne',
-    displayName: 'Detail One',
+    displayName: 'Chi tiết',
     sequenceNumber: 2,
     type: formControlTypes.textArea,
-    placeholder: 'Detail One',
+    placeholder: 'Chi tiết',
     required: false,
     minLength: undefined,
     maxLength: undefined,
     hidden: false,
-    readonly: false
+    readonly: false,
+    style:{
+        grid:{
+            header:'bh-hide',
+            column:'bh-hide'
+        }
+    }
 }
 
 let detailTwoField: BHTextControlType =  {
@@ -41,14 +47,14 @@ let detailTwoField: BHTextControlType =  {
     required: false,
     minLength: undefined,
     maxLength: undefined,
-    hidden: false,
+    hidden: true,
     readonly: false
 }
 
 let areaField: BHNumberControlType =  {
     name: 'area',
     displayName: 'Area',
-    sequenceNumber: 4,
+    sequenceNumber: 7,
     type: formControlTypes.number,
     required: false,
     hidden: false,
@@ -61,7 +67,7 @@ let areaField: BHNumberControlType =  {
 let widthField: BHNumberControlType =  {
     name: 'width',
     displayName: 'Width',
-    sequenceNumber: 5,
+    sequenceNumber: 8,
     type: formControlTypes.number,
     required: false,
     hidden: false,
@@ -74,7 +80,7 @@ let widthField: BHNumberControlType =  {
 let lengthField: BHNumberControlType =  {
     name: 'length',
     displayName: 'Length',
-    sequenceNumber: 6,
+    sequenceNumber: 9,
     type: formControlTypes.number,
     required: false,
     hidden: false,
@@ -87,7 +93,7 @@ let lengthField: BHNumberControlType =  {
 let valueField: BHNumberControlType =  {
     name: 'value',
     displayName: 'Value',
-    sequenceNumber: 7,
+    sequenceNumber: 10,
     type: formControlTypes.number,
     required: false,
     hidden: false,
@@ -99,7 +105,7 @@ let cityIdField: BHSelectControlType =  {
     name: 'cityId',
     displayName: 'City',
     placeHolder: 'Please select an option',
-    sequenceNumber: 8,
+    sequenceNumber: 4,
     type: formControlTypes.selectList,
     hidden: false,
     readonly: false,
@@ -125,7 +131,7 @@ let districtIdField: BHSelectControlType =  {
     name: 'districtId',
     displayName: 'District',
     placeHolder: 'Please select an option',
-    sequenceNumber: 9,
+    sequenceNumber: 5,
     type: formControlTypes.selectList,
     hidden: false,
     readonly: false,
@@ -151,7 +157,7 @@ let wardIdField: BHSelectControlType =  {
     name: 'wardId',
     displayName: 'Ward',
     placeHolder: 'Please select an option',
-    sequenceNumber: 10,
+    sequenceNumber: 6,
     type: formControlTypes.selectList,
     hidden: false,
     readonly: false,

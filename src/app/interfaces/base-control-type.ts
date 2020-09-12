@@ -20,6 +20,7 @@ export interface BHControlEvent{
 
 interface BhPropertyGridStyle{
     header?:string;
+    column?:string;
     cell?:string;
 }
 
