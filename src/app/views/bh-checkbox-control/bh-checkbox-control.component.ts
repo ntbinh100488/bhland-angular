@@ -12,6 +12,7 @@ export class BhCheckboxControlComponent implements OnInit {
     @Input() controlName: string;
     @Input() displayName: string;
     @Input() controlType: string;
+    @Input() required: boolean;
 
     @Input() hasTouched: boolean;
     @Input() hasInvalid: boolean;

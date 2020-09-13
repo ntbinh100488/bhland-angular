@@ -1,5 +1,5 @@
 <div [formGroup]="parentGroup">
-    <label for="{{entitySchemaName}}-{{controlName}}">{{displayName}}</label>
+    <label for="{{entitySchemaName}}-{{controlName}}">{{displayName}} <span *ngIf="required"> *</span></label>
     <div class="form-check" *ngFor="let optionDataItem of optionData; let optionDataItemIndex = index">
         <input class="form-check-input" 
             formControlName="{{controlName}}" 

@@ -20,6 +20,7 @@ export class BhNumberControlComponent implements OnInit {
     @Input() minValue: number;
     @Input() maxValue: number;
     @Input() stepValue: number;
+    @Input() required: boolean;
     @Input() hasRequiredError: boolean;
     @Input() hasMinValueError: boolean;
     @Input() hasMaxValueError: boolean;

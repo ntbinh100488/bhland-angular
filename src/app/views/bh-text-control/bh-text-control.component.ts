@@ -16,6 +16,7 @@ export class BhTextControlComponent implements OnInit {
     @Input() controlType: string;
     @Input() minLength: number;
     @Input() maxLength: number;
+    @Input() required: boolean;
 
     @Input() hasTouched: boolean;
     @Input() hasInvalid: boolean;

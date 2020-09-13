@@ -1,5 +1,5 @@
 <div [formGroup]="parentGroup">
-    <label for="{{entitySchemaName}}-{{controlName}}">{{displayName}}</label>
+    <label for="{{entitySchemaName}}-{{controlName}}">{{displayName}} <span *ngIf="required"> *</span></label>
     <input 
         formControlName="{{controlName}}"
         id="{{entitySchemaName}}-{{controlName}}" 
