@@ -6,5 +6,5 @@
 export const environment = {
   production: false,
   BASE_URL: 'http://localhost:4200/',
-  BASE_API_URL: 'http://localhost:3000/api/'
+  BASE_API_URL: 'https://bhland-node-api.azurewebsites.net/api/'
 };
