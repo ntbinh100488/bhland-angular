@@ -12,5 +12,6 @@ export const formControlTypes = {
     timeOnly: 'time',
     checkBox: 'checkbox',
     selectList: 'select',
-    radioList: 'radio'
+    radioList: 'radio',
+    preappend: 'preappend'
 }

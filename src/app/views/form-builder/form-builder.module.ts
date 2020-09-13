@@ -10,6 +10,7 @@ import { BhCheckboxControlModule } from '../bh-checkbox-control/bh-checkbox-cont
 import { BhNumberControlModule } from '../bh-number-control/bh-number-control.module'
 import { BhSelectControlModule } from '../bh-select-control/bh-select-control.module'
 import { BhRadioControlModule } from '../bh-radio-control/bh-radio-control.module'
+import { BhPreappendControlModule } from '../bh-preappend-control/bh-preappend-control.module'
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { BhRadioControlModule } from '../bh-radio-control/bh-radio-control.modul
     BhCheckboxControlModule,
     BhNumberControlModule,
     BhSelectControlModule,
-    BhRadioControlModule
+    BhRadioControlModule,
+    BhPreappendControlModule
 ],
   exports: [FormBuilderComponent],
   declarations: [ FormBuilderComponent ]

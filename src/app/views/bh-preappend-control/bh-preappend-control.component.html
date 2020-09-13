@@ -1,0 +1,29 @@
+<div [formGroup]="parentGroup" class="form-group">
+    <label class="col-form-label" for="{{entitySchemaName}}-{{controlName}}">{{displayName}} <span *ngIf="required"> *</span></label>
+    <div class="controls">
+        <div class="input-prepend input-group">
+            <div class="input-group-prepend" *ngIf="prepend">
+                <span class="input-group-text">
+                    <i *ngIf="prepend.icon" class="fa {{prepend.icon}}"></i>
+                    {{prepend.text}}
+                </span>
+            </div>
+            <input 
+                formControlName="{{controlName}}"
+                id="{{entitySchemaName}}-{{controlName}}" 
+                type="{{inputType}}"
+                ngModel
+                [readonly]="controlReadonly"
+                class="form-control">
+            <div class="input-group-append" *ngIf="append">
+                <span class="input-group-text">
+                    <i *ngIf="append.icon" class="fa {{append.icon}}"></i>
+                    {{append.text}}
+                </span>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="hasTouched && hasInvalid" class="alert alert-danger">
+        <div *ngIf="hasRequiredError">{{displayName}} is required.</div>
+    </div>
+</div>

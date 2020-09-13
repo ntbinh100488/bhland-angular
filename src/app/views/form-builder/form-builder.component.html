@@ -82,6 +82,23 @@
                     [hasTouched]="entitySchemaPropertyItem.formControl.touched"
                     [hasInvalid]="entitySchemaPropertyItem.formControl.invalid"
                 ></app-bh-radio-control>
+
+                <app-bh-preappend-control *ngSwitchCase="['preappend'].includes(entitySchemaPropertyItem.type) ? entitySchemaPropertyItem.type : ''"
+                    [parentGroup]="noteForm"
+                    [entitySchemaName]="entitySchemaName" 
+                    [controlName]="entitySchemaPropertyItem.name"
+                    [displayName]="entitySchemaPropertyItem.displayName"
+                    [controlType]="entitySchemaPropertyItem.type"
+                    [append]="entitySchemaPropertyItem.append"
+                    [prepend]="entitySchemaPropertyItem.prepend"
+                    [inputType]="entitySchemaPropertyItem.inputType"
+                    [required]="entitySchemaPropertyItem.required"
+                    [controlReadonly]="entitySchemaPropertyItem.readonly"
+                    [hasRequiredError]="entitySchemaPropertyItem.formControl.errors?.required"
+                    [hasTouched]="entitySchemaPropertyItem.formControl.touched"
+                    [hasInvalid]="entitySchemaPropertyItem.formControl.invalid"
+                    >
+                </app-bh-preappend-control>
         </div>
 
         <div class="bh-formbuilder-footer">

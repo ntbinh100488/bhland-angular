@@ -2,6 +2,7 @@ import { formControlTypes } from '../contants/form-control-types';
 import { tableConfigs } from '../contants/table-configs';
 import { BHBooleanControlType } from '../interfaces/boolean-control-type';
 import { BHNumberControlType } from '../interfaces/number-control-type';
+import { BHPreAppendControl, BHPreAppendControlType } from '../interfaces/pre-append-control-type';
 import { BHSelectControlType } from '../interfaces/select-control-type';
 import { BHTextControlType } from '../interfaces/text-control-type';
 import { baseFields } from './base-fields';
@@ -51,54 +52,64 @@ let detailTwoField: BHTextControlType =  {
     readonly: false
 }
 
-let areaField: BHNumberControlType =  {
+let areaField: BHPreAppendControlType =  {
     name: 'area',
     displayName: 'Diện tích',
     sequenceNumber: 7,
-    type: formControlTypes.number,
+    type: formControlTypes.preappend,
+    inputType: formControlTypes.number,
     required: false,
     hidden: false,
     readonly: false,
-    minValue: 1,
-    maxValue: 100000,
-    stepValue: 1
+    placeholder: 'Diện tích',
+    append: {
+        text:'m2'
+    }
 }
 
-let widthField: BHNumberControlType =  {
+let widthField: BHPreAppendControlType =  {
     name: 'width',
     displayName: 'Chiều rộng',
     sequenceNumber: 8,
-    type: formControlTypes.number,
+    type: formControlTypes.preappend,
+    inputType: formControlTypes.number,
     required: false,
     hidden: false,
     readonly: false,
-    minValue: 1,
-    maxValue: 100000,
-    stepValue: 1
+    placeholder: 'Diện tích',
+    append: {
+        text:'m2'
+    }
 }
 
-let lengthField: BHNumberControlType =  {
+let lengthField: BHPreAppendControlType =  {
     name: 'length',
     displayName: 'Chiều dài',
     sequenceNumber: 9,
-    type: formControlTypes.number,
+    type: formControlTypes.preappend,
+    inputType: formControlTypes.number,
     required: false,
     hidden: false,
     readonly: false,
-    minValue: 1,
-    maxValue: 100000,
-    stepValue: 1
+    placeholder: 'Diện tích',
+    append: {
+        text:'m2'
+    }
 }
 
-let valueField: BHNumberControlType =  {
+let valueField: BHPreAppendControlType =  {
     name: 'value',
     displayName: 'Giá trị',
     sequenceNumber: 10,
-    type: formControlTypes.number,
+    type: formControlTypes.preappend,
+    inputType: formControlTypes.number,
     required: false,
     hidden: false,
     readonly: false,
-    stepValue: 1
+    placeholder: 'Giá trị',
+    append: {
+        text: 'triệu đồng'
+    }
 }
 
 let cityIdField: BHSelectControlType =  {
