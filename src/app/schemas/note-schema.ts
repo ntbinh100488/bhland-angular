@@ -7,10 +7,10 @@ import { baseFields } from './base-fields';
 
 let descriptionField: BHTextControlType =  {
     name: 'description',
-    displayName: 'Description',
+    displayName: 'Ghi chú',
     sequenceNumber: 2,
     type: formControlTypes.textArea,
-    placeholder: 'descriptionField',
+    placeholder: 'Ghi chú',
     required: true,
     minLength: 3,
     maxLength: 512,
@@ -24,7 +24,7 @@ let descriptionField: BHTextControlType =  {
 };
 let staffIdField: BHSelectControlType =  {
     name: 'staffId',
-    displayName: 'Staff',
+    displayName: 'Nhân viên',
     placeHolder: 'Please select an option',
     sequenceNumber: 1,
     type: formControlTypes.selectList,

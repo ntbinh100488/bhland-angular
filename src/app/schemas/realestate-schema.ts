@@ -8,10 +8,10 @@ import { baseFields } from './base-fields';
 
 let codeField: BHTextControlType =  {
     name: 'code',
-    displayName: 'Code',
+    displayName: 'Mã BĐS',
     sequenceNumber: 1,
     type: formControlTypes.textBox,
-    placeholder: 'Code',
+    placeholder: 'Mã BĐS',
     required: false,
     minLength: undefined,
     maxLength: undefined,
@@ -53,7 +53,7 @@ let detailTwoField: BHTextControlType =  {
 
 let areaField: BHNumberControlType =  {
     name: 'area',
-    displayName: 'Area',
+    displayName: 'Diện tích',
     sequenceNumber: 7,
     type: formControlTypes.number,
     required: false,
@@ -66,7 +66,7 @@ let areaField: BHNumberControlType =  {
 
 let widthField: BHNumberControlType =  {
     name: 'width',
-    displayName: 'Width',
+    displayName: 'Chiều rộng',
     sequenceNumber: 8,
     type: formControlTypes.number,
     required: false,
@@ -79,7 +79,7 @@ let widthField: BHNumberControlType =  {
 
 let lengthField: BHNumberControlType =  {
     name: 'length',
-    displayName: 'Length',
+    displayName: 'Chiều dài',
     sequenceNumber: 9,
     type: formControlTypes.number,
     required: false,
@@ -92,7 +92,7 @@ let lengthField: BHNumberControlType =  {
 
 let valueField: BHNumberControlType =  {
     name: 'value',
-    displayName: 'Value',
+    displayName: 'Giá trị',
     sequenceNumber: 10,
     type: formControlTypes.number,
     required: false,
@@ -103,7 +103,7 @@ let valueField: BHNumberControlType =  {
 
 let cityIdField: BHSelectControlType =  {
     name: 'cityId',
-    displayName: 'City',
+    displayName: 'Tỉnh/Thành phố',
     placeHolder: 'Please select an option',
     sequenceNumber: 4,
     type: formControlTypes.selectList,
@@ -129,7 +129,7 @@ let cityIdField: BHSelectControlType =  {
 
 let districtIdField: BHSelectControlType =  {
     name: 'districtId',
-    displayName: 'District',
+    displayName: 'Quận/Huyện',
     placeHolder: 'Please select an option',
     sequenceNumber: 5,
     type: formControlTypes.selectList,
@@ -155,7 +155,7 @@ let districtIdField: BHSelectControlType =  {
 
 let wardIdField: BHSelectControlType =  {
     name: 'wardId',
-    displayName: 'Ward',
+    displayName: 'Phườg/Xã',
     placeHolder: 'Please select an option',
     sequenceNumber: 6,
     type: formControlTypes.selectList,

@@ -7,10 +7,10 @@ import { baseFields } from './base-fields';
 
 let nameField: BHTextControlType =  {
     name: 'name',
-    displayName: 'Name',
+    displayName: 'Tên',
     sequenceNumber: 1,
     type: formControlTypes.textBox,
-    placeholder: 'Name',
+    placeholder: 'Tên',
     required: true,
     minLength: 3,
     maxLength: 100,

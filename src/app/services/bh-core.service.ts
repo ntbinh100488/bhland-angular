@@ -2,6 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { entitySchema } from '../schemas/entitySchema';
 import { HttpClient, HttpHeaders, HttpUrlEncodingCodec} from '@angular/common/http';
 import { BHControlDataSourceFilter, BHControlDataSourcePaging } from '../interfaces/select-control-type';
+import { environment } from '../../environments/environment';
 
 @Injectable({
 	providedIn: 'root'
@@ -25,7 +26,7 @@ export class BhCoreService {
     
     submitForm(route: string, formData: any, createdCallbackFunc: any, editedCallbackFunc: any): any{
         let method = formData.id ? 'PATCH' : 'POST';
-        let url = 'http://localhost:3000/' + 'api/' + route;
+        let url = environment.BASE_API_URL + route;
         if(method == 'POST'){
             delete formData['id'];
             this.http.post<any>(url, formData).subscribe(data => {
@@ -52,7 +53,7 @@ export class BhCoreService {
             headers: headers
         }
 
-        let deleteUrl = 'http://localhost:3000/' + 'api/' + route + `/${entityId}`;
+        let deleteUrl = environment.BASE_API_URL + route + `/${entityId}`;
         this.http.delete<any>(deleteUrl).subscribe(data => {
             if(deletedCallbackFunc){
                 deletedCallbackFunc(data);
@@ -61,14 +62,14 @@ export class BhCoreService {
     }
 
     getFormData(route: string, entityId: number, cb: any): any{
-        let url = 'http://localhost:3000/' + 'api/' + route + '/' + entityId;
+        let url = environment.BASE_API_URL + route + '/' + entityId;
         this.http.get<any>(url).subscribe(data => {
             cb(data);
         })
     }
 
     getdataSourceData(route: string, filter: BHControlDataSourceFilter[], callback: any): any{
-        let baseUrl = 'http://localhost:3000/' + 'api/' + route;
+        let baseUrl = environment.BASE_API_URL + route;
         let url = baseUrl;
         if(filter){
             let filterStr = ``;
@@ -89,7 +90,7 @@ export class BhCoreService {
     }
 
     getdataSourceDataAndPaging(route: string, pagingFilter: BHControlDataSourcePaging, callback: any): any{
-        let baseUrl = 'http://localhost:3000/' + 'api/' + route;
+        let baseUrl = environment.BASE_API_URL + route;
         let url = baseUrl;
         if(pagingFilter){
             let filterStr = `?filter[skip]=${pagingFilter.skip}&filter[limit]=${pagingFilter.limit}`;
@@ -101,7 +102,7 @@ export class BhCoreService {
     }
 
     countDataSourceData(route: string, callback: any): any{
-        let baseUrl = 'http://localhost:3000/' + 'api/' + route + '/count';
+        let baseUrl = environment.BASE_API_URL + route + '/count';
         let url = baseUrl;
         this.http.get<any>(url).subscribe(data => {
             callback(data);
