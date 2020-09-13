@@ -10,7 +10,7 @@ let descriptionField: BHTextControlType =  {
     displayName: 'Ghi chú',
     sequenceNumber: 2,
     type: formControlTypes.textArea,
-    placeholder: 'Ghi chú',
+    placeholder: 'Nội dung ghi chú',
     required: true,
     minLength: 3,
     maxLength: 512,

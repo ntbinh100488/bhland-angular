@@ -2,7 +2,7 @@ import { INavData } from '@coreui/angular';
 
 export const navItems: INavData[] = [
     {
-        name: 'Dashboard',
+        name: 'Thống kê',
         url: '/dashboard',
         icon: 'icon-speedometer',
         badge: {
@@ -15,7 +15,7 @@ export const navItems: INavData[] = [
         name: 'PERSON MANAGEMENT'
     },
     {
-        name: 'Staffs',
+        name: 'Nhân Viên',
         url: '/staff',
         icon: 'icon-user'
     },
@@ -29,12 +29,12 @@ export const navItems: INavData[] = [
         name: 'TOOLS'
     },
     {
-        name: 'Notes',
+        name: 'Ghi chú',
         url: '/note',
         icon: 'icon-notebook'
     },
     {
-        name: 'Real Estate',
+        name: 'Bất động sản',
         url: '/realestate',
         icon: 'icon-picture'
     },
