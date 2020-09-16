@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     component: LiabilityComponent,
     data: {
-      title: 'Liability'
+      title: 'Công nợ'
     }
   }
 ];
