@@ -2,11 +2,13 @@
 import { realestateSchema } from './realestate-schema';
 import { staffSchema } from './staff-schema';
 import { noteSchema } from './note-schema';
+import { liabilitySchema } from './liability-schema';
 
 export const entitySchema = [
     noteSchema,
     staffSchema,
-    realestateSchema
+    realestateSchema,
+    liabilitySchema
 ]
 
 // let idField: BHTextControlType =  {

@@ -83,7 +83,7 @@ export class BhTableControlComponent implements OnInit {
     populateColumnData(tableDataItem: any, tableDataColumnItem: any): any{
         if(tableDataColumnItem.dataSource && (tableDataColumnItem.type === formControlTypes.selectList || tableDataColumnItem.type === formControlTypes.radioList)){
             let idValue = tableDataItem[tableDataColumnItem.name];
-            if(!this.fkDataSources) return;
+            if(!idValue || !this.fkDataSources) return;
 
             let fkColumnDs = this.fkDataSources.find(ds => ds.name === tableDataColumnItem.dataSource.entityPluralName);
             if(fkColumnDs){

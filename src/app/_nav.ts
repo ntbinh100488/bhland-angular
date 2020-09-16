@@ -38,6 +38,11 @@ export const navItems: INavData[] = [
         url: '/realestate',
         icon: 'icon-picture'
     },
+    {
+        name: 'Công nợ',
+        url: '/liability',
+        icon: 'icon-credit-card'
+    },
 ]
 
 // export const navItems: INavData[] = [
