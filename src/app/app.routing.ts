@@ -83,6 +83,10 @@ export const routes: Routes = [
         loadChildren: () => import('./views/liability/liability.module').then(m => m.LiabilityModule)
       },
       {
+        path: 'customertype',
+        loadChildren: () => import('./views/customer-type/customer-type.module').then(m => m.CustomerTypeModule)
+      },
+      {
         path: 'icons',
         loadChildren: () => import('./views/icons/icons.module').then(m => m.IconsModule)
       },

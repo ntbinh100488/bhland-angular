@@ -43,6 +43,15 @@ export const navItems: INavData[] = [
         url: '/liability',
         icon: 'icon-credit-card'
     },
+    {
+        title: true,
+        name: 'KHÁCH HÀNG'
+    },
+    {
+        name: 'Loại khách hàng',
+        url: '/customertype',
+        icon: 'icon-user'
+    },
 ]
 
 // export const navItems: INavData[] = [

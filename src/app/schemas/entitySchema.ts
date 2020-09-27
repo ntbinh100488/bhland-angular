@@ -3,12 +3,14 @@ import { realestateSchema } from './realestate-schema';
 import { staffSchema } from './staff-schema';
 import { noteSchema } from './note-schema';
 import { liabilitySchema } from './liability-schema';
+import { customerTypeSchema } from './customer-type-schema';
 
 export const entitySchema = [
     noteSchema,
     staffSchema,
     realestateSchema,
-    liabilitySchema
+    liabilitySchema,
+    customerTypeSchema
 ]
 
 // let idField: BHTextControlType =  {
