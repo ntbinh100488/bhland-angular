@@ -56,6 +56,11 @@ export const navItems: INavData[] = [
         name: 'Ngân sách KH',
         url: '/customerbudget',
         icon: 'icon-user'
+    },
+    {
+        name: 'Khách hàng',
+        url: '/customer',
+        icon: 'icon-user'
     }
 ]
 
