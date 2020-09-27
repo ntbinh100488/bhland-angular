@@ -48,10 +48,15 @@ export const navItems: INavData[] = [
         name: 'KHÁCH HÀNG'
     },
     {
-        name: 'Loại khách hàng',
+        name: 'Loại KH',
         url: '/customertype',
         icon: 'icon-user'
     },
+    {
+        name: 'Ngân sách KH',
+        url: '/customerbudget',
+        icon: 'icon-user'
+    }
 ]
 
 // export const navItems: INavData[] = [
