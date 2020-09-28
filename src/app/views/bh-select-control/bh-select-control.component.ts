@@ -46,7 +46,7 @@ export class BhSelectControlComponent implements OnInit {
         }else if(this.dataSource){
             this.displayFieldName = this.dataSource.displayFieldName;
             this.valueFieldName = this.dataSource.valueFieldName;
-            this.bhCoreService.getdataSourceData(this.dataSource.entityPluralName, this.dataSource.filter, this.populateData.bind(this));
+            // this.bhCoreService.getdataSourceData(this.dataSource.entityPluralName, this.dataSource.filter, this.populateData.bind(this));
         }
     }
 

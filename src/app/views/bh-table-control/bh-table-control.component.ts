@@ -58,7 +58,7 @@ export class BhTableControlComponent implements OnInit {
             return entitySchema.dataSource !== undefined;
         });
         fkEntitySchemas.forEach(fkEntitySchemaItem => {
-            this.bhCoreService.getdataSourceData(fkEntitySchemaItem.dataSource.entityPluralName, undefined, this.pushFkDataSources.bind(this, fkEntitySchemaItem.dataSource.entityPluralName));
+            this.bhCoreService.getdataSourceData(fkEntitySchemaItem.dataSource.entityPluralName, undefined, this.pushFkDataSources.bind(this, fkEntitySchemaItem.name, fkEntitySchemaItem.dataSource.entityPluralName));
         });
         
         this.entitySchemaProperties.sort((a, b) => (a.sequenceNumber > b.sequenceNumber) ? 1 : -1);
@@ -72,7 +72,14 @@ export class BhTableControlComponent implements OnInit {
         this.bhCoreService.getdataSourceDataAndPaging(this.entitySchema.plural, this.tablePaging, this.populateData.bind(this));
     }
 
-    pushFkDataSources(entitySchemaPluralName:string, dataResponse:any):void{
+    pushFkDataSources(fieldName:string, entitySchemaPluralName:string, dataResponse:any):void{
+        if(this.formBuilder.selectControls){
+            let fieldSelectControl = this.formBuilder.selectControls.find(fieldControl => fieldControl.controlName === fieldName);
+            if(fieldSelectControl){
+                fieldSelectControl.populateData(dataResponse);
+            }
+        }
+        
         this.fkDataSources.push({
             name: entitySchemaPluralName,
             data: dataResponse
