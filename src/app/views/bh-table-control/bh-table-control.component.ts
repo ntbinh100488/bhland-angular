@@ -8,6 +8,9 @@ import { FormBuilderComponent } from '../form-builder/form-builder.component';
 import { formControlTypes } from '../../contants/form-control-types';
 import { PlacesService } from '../../services/places.service';
 declare var $: any;
+import * as moment from 'moment';
+import { dateTimeConfigs } from '../../contants/date-time';
+export default moment;
 
 @Component({
   selector: 'app-bh-table-control',
@@ -80,6 +83,16 @@ export class BhTableControlComponent implements OnInit {
         this.tableData = dataSourceResult;
     }
 
+    markupFormData(columnName: string, tableDataItem: any):any{
+        let columnEntitySchema = this.entitySchemaProperties.find(entitySchemaItem => entitySchemaItem.name === columnName)
+        if(columnEntitySchema.type != formControlTypes.dateOnly){
+            return tableDataItem[columnName];
+        }
+
+        let markedUpFormData = moment(tableDataItem[columnName]).format(dateTimeConfigs.uiFormat);
+        return markedUpFormData;
+    }
+
     populateColumnData(tableDataItem: any, tableDataColumnItem: any): any{
         if(tableDataColumnItem.dataSource && (tableDataColumnItem.type === formControlTypes.selectList || tableDataColumnItem.type === formControlTypes.radioList)){
             let idValue = tableDataItem[tableDataColumnItem.name];
@@ -92,7 +105,7 @@ export class BhTableControlComponent implements OnInit {
             }
         }
 
-        return tableDataItem[tableDataColumnItem.name];
+        return this.markupFormData(tableDataColumnItem.name, tableDataItem);
     }
 
     rePaging(event: any, pageNumber: number): void{
