@@ -4,6 +4,11 @@ import { BhCommonService } from '../../services/bh-common.service';
 import { BhCoreService } from '../../services/bh-core.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BhSelectControlComponent } from '../bh-select-control/bh-select-control.component';
+import { formControlTypes } from '../../contants/form-control-types';
+import { dateTimeConfigs } from '../../contants/date-time';
+
+import * as moment from 'moment';
+export default moment;
 
 @Component({
     selector: 'app-form-builder',
@@ -59,6 +64,20 @@ export class FormBuilderComponent implements OnInit {
         }
     }
 
+    markupFormData(formData: any):any{
+        let markedUpFormData = formData;
+        this.entitySchemaProperties.filter
+        let dateOnlyFieldSchemas = this.entitySchemaProperties.filter(function(fieldSchema) {
+            return fieldSchema.type === formControlTypes.dateOnly;
+        });
+
+        dateOnlyFieldSchemas.forEach(fieldSchema => {
+            markedUpFormData[fieldSchema.name] = moment(formData[fieldSchema.name]).format(dateTimeConfigs.controlFormat);
+        });
+
+        return markedUpFormData;
+    }
+
     setFormValue(callbackFunc: any, formData: any){
         setTimeout(()=> {
             this.noteForm.reset();
@@ -71,7 +90,8 @@ export class FormBuilderComponent implements OnInit {
                 && formData.id){
                 formData.code = `${this.entitySchema.codePrefix}-${formData.id}`;
             }
-            this.noteForm.patchValue(formData);
+            let markedUpFormData = this.markupFormData(formData);
+            this.noteForm.patchValue(markedUpFormData);
             if(callbackFunc){
                 callbackFunc();
             }
