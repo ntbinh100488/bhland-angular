@@ -58,15 +58,15 @@ let dobField: BHTextControlType =  {
     readonly: false
 };
 
-let phoneNumberField: BHNumberControlType =  {
+let phoneNumberField: BHTextControlType =  {
     name: 'phoneNumber',
     displayName: 'Số điện thoại',
     sequenceNumber: 5,
-    type: formControlTypes.number,
+    type: formControlTypes.textBox,
     required: true,
     hidden: false,
     readonly: false,
-    stepValue: 1
+    placeholder: 'Số điện thoại'
 };
 
 let emailField: BHTextControlType =  {
