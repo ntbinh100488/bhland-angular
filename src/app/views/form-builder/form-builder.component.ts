@@ -6,6 +6,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BhSelectControlComponent } from '../bh-select-control/bh-select-control.component';
 import { formControlTypes } from '../../contants/form-control-types';
 import { dateTimeConfigs } from '../../contants/date-time';
+import { NgxSpinnerService } from "ngx-spinner";
 
 import * as moment from 'moment';
 export default moment;
@@ -20,7 +21,8 @@ export class FormBuilderComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private bhCommonService: BhCommonService,
-        private bhCoreService: BhCoreService
+        private bhCoreService: BhCoreService,
+        private spinner: NgxSpinnerService
     ) {}
 
     entitySchemaProperties: any[] = [];
@@ -36,6 +38,7 @@ export class FormBuilderComponent implements OnInit {
     @ViewChildren(BhSelectControlComponent) selectControls: QueryList<BhSelectControlComponent>;
 
     ngOnInit(): void {
+        this.spinner.show();
         let href = this.router.url;   // this.router.url = '/note'
         let schemaName = this.bhCommonService.routeUrlToSchemaName(href);
         this.entitySchema = this.bhCoreService.getEntitySchema(schemaName);
@@ -53,14 +56,15 @@ export class FormBuilderComponent implements OnInit {
             entitySchemaPropertyItem.formControl = this.noteForm.controls[entitySchemaPropertyItem.name];
         });
         this.entitySchemaProperties.sort((a, b) => (a.sequenceNumber > b.sequenceNumber) ? 1 : -1);
-        this.initForm(undefined, undefined);
     }
 
     initForm(entityId: number, callbackFunc: any) : void{
+        this.spinner.show();
         if(entityId){
             this.bhCoreService.getFormData(this.entitySchema.plural, entityId, this.setFormValue.bind(this, callbackFunc));
         }else{
             this.noteForm.reset();
+            this.spinner.hide();
         }
     }
 
@@ -95,6 +99,7 @@ export class FormBuilderComponent implements OnInit {
             if(callbackFunc){
                 callbackFunc();
             }
+            this.spinner.hide();
         }, 0);
     }
 

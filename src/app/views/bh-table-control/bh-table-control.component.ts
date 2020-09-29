@@ -7,6 +7,7 @@ import { tableConfigs } from '../../contants/table-configs';
 import { FormBuilderComponent } from '../form-builder/form-builder.component';
 import { formControlTypes } from '../../contants/form-control-types';
 import { PlacesService } from '../../services/places.service';
+import { NgxSpinnerService } from "ngx-spinner";
 declare var $: any;
 import * as moment from 'moment';
 import { dateTimeConfigs } from '../../contants/date-time';
@@ -43,10 +44,12 @@ export class BhTableControlComponent implements OnInit {
         private router: Router,
         private bhCommonService: BhCommonService,
         private bhCoreService: BhCoreService,
-        private placesService: PlacesService
+        private placesService: PlacesService,
+        private spinner: NgxSpinnerService
     ) {}
 
     ngOnInit(): void {
+        this.spinner.show();
         let href = this.router.url;   // this.router.url = '/note'
         let schemaName = this.bhCommonService.routeUrlToSchemaName(href);
         this.entitySchema = this.bhCoreService.getEntitySchema(schemaName);
@@ -88,6 +91,7 @@ export class BhTableControlComponent implements OnInit {
 
     populateData(dataSourceResult: any): void{
         this.tableData = dataSourceResult;
+        this.spinner.hide();
     }
 
     markupFormData(columnName: string, tableDataItem: any):any{
