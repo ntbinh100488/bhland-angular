@@ -100,8 +100,13 @@ export class BhTableControlComponent implements OnInit {
             return tableDataItem[columnName];
         }
 
-        let markedUpFormData = moment(tableDataItem[columnName]).format(dateTimeConfigs.uiFormat);
-        return markedUpFormData;
+        let columnDataValue = tableDataItem[columnName];
+        if(columnDataValue){
+            let markedUpFormData = moment(tableDataItem[columnName]).format(dateTimeConfigs.uiFormat);
+            return markedUpFormData;
+        }
+        
+        return '';
     }
 
     populateColumnData(tableDataItem: any, tableDataColumnItem: any): any{

@@ -68,7 +68,7 @@ export class FormBuilderComponent implements OnInit {
         }
     }
 
-    markupFormData(formData: any):any{
+    markupFormDataBeforePatchFormData(formData: any):any{
         let markedUpFormData = formData;
         this.entitySchemaProperties.filter
         let dateOnlyFieldSchemas = this.entitySchemaProperties.filter(function(fieldSchema) {
@@ -94,7 +94,7 @@ export class FormBuilderComponent implements OnInit {
                 && formData.id){
                 formData.code = `${this.entitySchema.codePrefix}-${formData.id}`;
             }
-            let markedUpFormData = this.markupFormData(formData);
+            let markedUpFormData = this.markupFormDataBeforePatchFormData(formData);
             this.noteForm.patchValue(markedUpFormData);
             if(callbackFunc){
                 callbackFunc();
@@ -107,11 +107,28 @@ export class FormBuilderComponent implements OnInit {
         return this.noteForm.controls;
     }
 
+    markupFormDataBeforeSave(formData: any):any{
+        let markedUpFormData = formData;
+        this.entitySchemaProperties.filter
+        let dateOnlyFieldSchemas = this.entitySchemaProperties.filter(function(fieldSchema) {
+            return fieldSchema.type === formControlTypes.dateOnly;
+        });
+
+        dateOnlyFieldSchemas.forEach(fieldSchema => {
+            if(!markedUpFormData[fieldSchema.name] && !fieldSchema.required){
+                markedUpFormData[fieldSchema.name] = undefined;
+            }
+        });
+
+        return markedUpFormData;
+    }
+
     submit(): void{
         if(this.isCanceled) return;
 
         this.isCanceled = false;
-        let result = this.bhCoreService.submitForm(this.entitySchema.plural, this.noteForm.value, this.createdCallback, this.editedCallback);
+        let markedUpFormData = this.markupFormDataBeforeSave(this.noteForm.value);
+        let result = this.bhCoreService.submitForm(this.entitySchema.plural, markedUpFormData, this.createdCallback, this.editedCallback);
         this.tableHideModal.emit('close modal');
     }
     cancel(){
