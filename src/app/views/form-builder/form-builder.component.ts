@@ -116,7 +116,7 @@ export class FormBuilderComponent implements OnInit {
 
         dateOnlyFieldSchemas.forEach(fieldSchema => {
             if(!markedUpFormData[fieldSchema.name] && !fieldSchema.required){
-                markedUpFormData[fieldSchema.name] = undefined;
+                markedUpFormData[fieldSchema.name] = null;
             }
         });
 
