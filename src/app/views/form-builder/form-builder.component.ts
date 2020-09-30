@@ -76,7 +76,10 @@ export class FormBuilderComponent implements OnInit {
         });
 
         dateOnlyFieldSchemas.forEach(fieldSchema => {
-            markedUpFormData[fieldSchema.name] = moment(formData[fieldSchema.name]).format(dateTimeConfigs.controlFormat);
+            let formFieldValue = formData[fieldSchema.name];
+            if(formFieldValue){
+                markedUpFormData[fieldSchema.name] = moment(formFieldValue).format(dateTimeConfigs.controlFormat);
+            }
         });
 
         return markedUpFormData;
