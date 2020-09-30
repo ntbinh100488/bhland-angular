@@ -37,6 +37,7 @@ export class BhSelectControlComponent implements OnInit {
     public dataSourceData: any[] = [];
     public displayFieldName: string;
     public valueFieldName: string;
+    public nullValue: any = null;
 
     constructor(private bhCoreService: BhCoreService, private eventService: EventService, @Inject(FormBuilderComponent) private parent: FormBuilderComponent) { }
 

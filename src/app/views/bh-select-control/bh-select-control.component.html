@@ -6,7 +6,7 @@
         ngModel
         (ngModelChange)="modelChanged($event)"
         class="form-control" >
-            <option [value]="null">{{placeHolder}}</option>
+            <option value="{{nullValue}}">{{placeHolder}}</option>
             <option *ngFor="let optionDataItem of optionData; let optionDataItemIndex = index" [value]="optionDataItem.value">
                 {{optionDataItem.displayValue}}
             </option>
