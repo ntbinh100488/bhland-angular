@@ -23,6 +23,19 @@ export class BhCoreService {
         let entitySchemaItem = entitySchema.find(entitySchemaItem => entitySchemaItem.name === schemaName);
 		return entitySchemaItem.properties;
     }
+
+    submitCustomForm(route: string, formData: any, createdCallbackFunc: any, editedCallbackFunc: any): any{
+        let url = environment.BASE_API_URL + route;
+        this.http.post<any>(url, formData).subscribe(data => {
+            if(!data) return;
+
+            if(formData.id){
+                editedCallbackFunc.emit(data.response);
+            }else{
+                createdCallbackFunc.emit(data.response);
+            }
+        })
+    }
     
     submitForm(route: string, formData: any, createdCallbackFunc: any, editedCallbackFunc: any): any{
         let method = formData.id ? 'PATCH' : 'POST';
@@ -31,13 +44,13 @@ export class BhCoreService {
             delete formData['id'];
             this.http.post<any>(url, formData).subscribe(data => {
                 if(createdCallbackFunc){
-                    createdCallbackFunc.emit(data);
+                    createdCallbackFunc.emit({dataset:data, error: null});
                 }
             })
         }else if(method == 'PATCH'){    
             this.http.patch<any>(url, formData).subscribe(data => {
                 if(editedCallbackFunc){
-                    editedCallbackFunc.emit(data);
+                    editedCallbackFunc.emit({dataset:data, error: null});
                 }
             })
         }

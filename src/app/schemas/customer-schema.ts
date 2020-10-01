@@ -145,6 +145,7 @@ export const customerSchema = {
     plural: "customers",
     properties: customerEntityControls,
     form:{
+        customAction: 'bh_create',
     },
     list:{
     },

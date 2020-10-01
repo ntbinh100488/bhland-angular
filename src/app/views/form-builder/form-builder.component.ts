@@ -131,7 +131,11 @@ export class FormBuilderComponent implements OnInit {
 
         this.isCanceled = false;
         let markedUpFormData = this.markupFormDataBeforeSave(this.noteForm.value);
-        let result = this.bhCoreService.submitForm(this.entitySchema.plural, markedUpFormData, this.createdCallback, this.editedCallback);
+        if(Object.keys(this.entitySchema.form).length > 0){
+            this.bhCoreService.submitCustomForm(this.entitySchema.plural + '/' + this.entitySchema.form.customAction, markedUpFormData, this.createdCallback, this.editedCallback);
+        }else{
+            this.bhCoreService.submitForm(this.entitySchema.plural, markedUpFormData, this.createdCallback, this.editedCallback);
+        }
         this.tableHideModal.emit('close modal');
     }
     cancel(){

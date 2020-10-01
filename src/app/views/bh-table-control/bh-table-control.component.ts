@@ -39,6 +39,7 @@ export class BhTableControlComponent implements OnInit {
     public selectedRecord: any;
     public selectedRecordIndex: number;
     public fkDataSources: FkDataSource[] = [];
+    public alertsDismiss: AlertsDismiss[] = [];
 
     constructor(
         private router: Router,
@@ -223,19 +224,41 @@ export class BhTableControlComponent implements OnInit {
         $("#deleteEntityDataModal").modal('hide');
     }
 
-    createdCallback(createdEntity: any): void{
+    showNotification(type: string, message: string):void{
+        this.alertsDismiss.push({
+            msg: message,
+            timeout: 5000,
+            type: type
+        });
+    }
+
+    createdCallback(response: any): void{
+        if(response.error){
+            this.showNotification('danger', response.error.message);
+            console.log(JSON.stringify(response.error));
+            return;
+        }
+
         console.log('createdCallback');
         if(this.tableData.length < this.pageSize){
-            this.tableData.push(createdEntity);
+            this.tableData.push(response.dataset);
         }
         this.bhCoreService.countDataSourceData(this.entitySchema.plural, this.setTotalData.bind(this));
+        this.showNotification('success', 'Xử lý thành công');
     }
-    editedCallback(editedEntity: any): void{
-        console.log('editedEntity');
-        const editedEntityIndex = this.tableData.findIndex((obj => obj.id === editedEntity.id));
-        if(editedEntityIndex > -1){
-            this.tableData[editedEntityIndex] = editedEntity;
+    editedCallback(response: any): void{
+        if(response.error){
+            this.showNotification('danger', response.error.message);
+            console.log(JSON.stringify(response.error));
+            return;
         }
+
+        console.log('editedEntity');
+        const editedEntityIndex = this.tableData.findIndex((obj => obj.id === response.dataset.id));
+        if(editedEntityIndex > -1){
+            this.tableData[editedEntityIndex] = response.dataset;
+        }
+        this.showNotification('success', 'Xử lý thành công');
     }
     deletedCallback(deletedEntity: any): void{
         console.log('deletedEntity');
@@ -245,6 +268,7 @@ export class BhTableControlComponent implements OnInit {
                 this.tableData.splice(deletedEntityIndex, 1);
                 this.clearSelectedRecord();
                 this.bhCoreService.countDataSourceData(this.entitySchema.plural, this.setTotalData.bind(this));
+                this.showNotification('success', 'Xử lý thành công');
             }
         }
         this.hideDeleteModal();
@@ -370,4 +394,10 @@ interface TablePagingFilter{
 interface FkDataSource{
     name: string;
     data: any[];
+}
+
+interface AlertsDismiss{
+    type: string;
+    timeout: number;
+    msg: string;
 }
