@@ -37,4 +37,16 @@ export class ESmsService {
 
         return {name:'Binh'};
     }
+
+    getBalance(callback:any):any {
+        callback(this.buildSuccessResponse({Balance:4210}));
+        return;
+
+        let getBalanceUrl = `http://rest.esms.vn/MainService.svc/json/GetBalance/${environment.ESMS.API_KEY}/${environment.ESMS.SECRET_KEY}`;
+        this.http.get<any>(getBalanceUrl).subscribe(result => {
+            if(callback){
+                callback(this.buildSuccessResponse(result));
+            }
+        });
+    }
 }
