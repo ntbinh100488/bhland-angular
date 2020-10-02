@@ -66,7 +66,16 @@ export const navItems: INavData[] = [
         name: 'Khách hàng',
         url: '/customer',
         icon: 'icon-user'
-    }
+    },
+    {
+        title: true,
+        name: 'SMS'
+    },
+    {
+        name: 'Mẫu tin nhắn',
+        url: '/smstemplate',
+        icon: 'icon-speech'
+    },
 ]
 
 // export const navItems: INavData[] = [

@@ -99,6 +99,10 @@ export const routes: Routes = [
         loadChildren: () => import('./views/customer-group/customer-group.module').then(m => m.CustomerGroupModule)
       },
       {
+        path: 'smstemplate',
+        loadChildren: () => import('./views/sms-template/sms-template.module').then(m => m.SmsTemplateModule)
+      },
+      {
         path: 'icons',
         loadChildren: () => import('./views/icons/icons.module').then(m => m.IconsModule)
       },
