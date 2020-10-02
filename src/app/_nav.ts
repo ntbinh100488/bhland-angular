@@ -58,6 +58,11 @@ export const navItems: INavData[] = [
         icon: 'icon-user'
     },
     {
+        name: 'Nhóm khách hàng',
+        url: '/customergroup',
+        icon: 'icon-user'
+    },
+    {
         name: 'Khách hàng',
         url: '/customer',
         icon: 'icon-user'

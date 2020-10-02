@@ -6,6 +6,7 @@ import { liabilitySchema } from './liability-schema';
 import { customerTypeSchema } from './customer-type-schema';
 import { customerBudgetSchema } from './customer-budget-schema';
 import { customerSchema } from './customer-schema';
+import { customerGroupSchema } from './customer-group-schema';
 
 export const entitySchema = [
     noteSchema,
@@ -14,7 +15,8 @@ export const entitySchema = [
     liabilitySchema,
     customerTypeSchema,
     customerBudgetSchema,
-    customerSchema
+    customerSchema,
+    customerGroupSchema
 ]
 
 // let idField: BHTextControlType =  {

@@ -31,6 +31,7 @@ let staffIdField: BHSelectControlType =  {
     hidden: false,
     readonly: false,
     required: true,
+    multiple: false,
     optionItems: null,
     dataSource: {
         entityPluralName: 'staffs',

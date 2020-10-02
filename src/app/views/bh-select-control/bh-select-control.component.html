@@ -1,6 +1,7 @@
 <div [formGroup]="parentGroup">
     <label for="{{entitySchemaName}}-{{controlName}}">{{displayName}} <span *ngIf="required"> *</span></label>
     <select 
+        *ngIf="!multiple"
         formControlName="{{controlName}}" 
         id="{{entitySchemaName}}-{{controlName}}"
         ngModel
@@ -11,6 +12,20 @@
                 {{optionDataItem.displayValue}}
             </option>
     </select>
+    <select
+        *ngIf="multiple"
+        formControlName="{{controlName}}" 
+        id="{{entitySchemaName}}-{{controlName}}"
+        ngModel
+        (ngModelChange)="modelChanged($event)"
+        class="form-control"  
+        size="5" 
+        multiple>
+            <option value="{{nullValue}}">{{placeHolder}}</option>
+            <option *ngFor="let optionDataItem of optionData; let optionDataItemIndex = index" [value]="optionDataItem.value">
+                {{optionDataItem.displayValue}}
+            </option>
+      </select>
     <div *ngIf="hasTouched && hasInvalid" class="alert alert-danger">
         <div *ngIf="hasRequiredError">{{displayName}} is required.</div>
     </div>

@@ -3,6 +3,7 @@ import { BHBaseControlType } from "./base-control-type";
 export interface BHSelectControlType extends BHBaseControlType {  
     placeHolder: string;  
     required: boolean;  
+    multiple: boolean;
     optionItems: BHSelectControlOptionItems[];
     dataSource: BHSelectControlDataSource;
 }

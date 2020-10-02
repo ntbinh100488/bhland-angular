@@ -23,6 +23,7 @@ export class BhSelectControlComponent implements OnInit {
     @Input() hasTouched: boolean;
     @Input() hasInvalid: boolean;
     @Input() required: boolean;
+    @Input() multiple: boolean;
     @Input() parentGroup: FormGroup;
     @Input() controlReadonly: boolean;
     @Input() hasRequiredError: boolean;

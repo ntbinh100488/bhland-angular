@@ -117,8 +117,17 @@ export class BhTableControlComponent implements OnInit {
 
             let fkColumnDs = this.fkDataSources.find(ds => ds.name === tableDataColumnItem.dataSource.entityPluralName);
             if(fkColumnDs){
-                let dataItem = fkColumnDs.data.find(dI => dI.id === idValue);
-                return dataItem[tableDataColumnItem.dataSource.displayFieldName];
+                if(Array.isArray(idValue)){
+                    let columnDataArr = [];
+                    idValue.forEach(idValueEle => {
+                        let dataItem = fkColumnDs.data.find(dI => dI.id === idValueEle);
+                        columnDataArr.push(dataItem[tableDataColumnItem.dataSource.displayFieldName]);
+                    });
+                    return columnDataArr.join();
+                }else{
+                    let dataItem = fkColumnDs.data.find(dI => dI.id === idValue);
+                    return dataItem[tableDataColumnItem.dataSource.displayFieldName];
+                }
             }
         }
 

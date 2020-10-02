@@ -61,6 +61,7 @@ let liabilityStatusIdField: BHSelectControlType =  {
     hidden: false,
     readonly: false,
     required: true,
+    multiple: false,
     optionItems: null,
     dataSource: {
         entityPluralName: 'liabilitystatuses',
@@ -83,6 +84,7 @@ let liabilityTypeIdField: BHSelectControlType =  {
     hidden: false,
     readonly: false,
     required: true,
+    multiple: false,
     optionItems: null,
     dataSource: {
         entityPluralName: 'liabilitytypes',
@@ -105,6 +107,7 @@ let responsibleStaffField: BHSelectControlType =  {
     hidden: false,
     readonly: false,
     required: true,
+    multiple: false,
     optionItems: null,
     dataSource: {
         entityPluralName: 'staffs',

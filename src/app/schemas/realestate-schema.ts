@@ -121,6 +121,7 @@ let cityIdField: BHSelectControlType =  {
     hidden: false,
     readonly: false,
     required: true,
+    multiple: false,
     optionItems: null,
     dataSource: {
         entityPluralName: 'cities',
@@ -147,6 +148,7 @@ let districtIdField: BHSelectControlType =  {
     hidden: false,
     readonly: false,
     required: true,
+    multiple: false,
     optionItems: null,
     dataSource: {
         entityPluralName: 'districts',
@@ -173,6 +175,7 @@ let wardIdField: BHSelectControlType =  {
     hidden: false,
     readonly: false,
     required: true,
+    multiple: false,
     optionItems: null,
     dataSource: {
         entityPluralName: 'wards',

@@ -91,6 +91,7 @@ let customerTypeIdField: BHSelectControlType =  {
     hidden: false,
     readonly: false,
     required: true,
+    multiple: false,
     optionItems: null,
     dataSource: {
         entityPluralName: 'customertypes',
@@ -114,6 +115,7 @@ let customerBudgetIdField: BHSelectControlType =  {
     hidden: false,
     readonly: false,
     required: true,
+    multiple: false,
     optionItems: null,
     dataSource: {
         entityPluralName: 'customerbudgets',
