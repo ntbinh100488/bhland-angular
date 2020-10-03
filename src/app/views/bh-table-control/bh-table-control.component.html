@@ -1,10 +1,6 @@
 <div class="fade-in">
-    <div class="row">
-        <div class="col-12">
-            <div *ngFor="let alert of alertsDismiss">
-                <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
-            </div>
-        </div>
+    <div *ngFor="let alert of alertsDismiss" class="bh-table-notification">
+        <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
     </div>
     <div class="row">
        <div class="col-12">

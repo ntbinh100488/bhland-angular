@@ -36,3 +36,8 @@ table thead th.width-twohundred-pixel{
 table .bh-hide{
     display: none !important;
 }
+.bh-table-notification{
+    position: fixed;
+    right: 30px;
+    z-index: 1;
+}
