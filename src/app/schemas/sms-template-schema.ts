@@ -39,35 +39,35 @@ let contentField: BHTextControlType =  {
         }
     }
 };
-let customerGroupIdField: BHSelectControlType =  {
-    name: 'customerGroupId',
-    displayName: 'Nhóm khách hàng',
-    placeHolder: 'Please select an option',
-    sequenceNumber: 4,
-    type: formControlTypes.selectList,
-    hidden: false,
-    readonly: false,
-    required: true,
-    multiple: false,
-    optionItems: null,
-    dataSource: {
-        entityPluralName: 'customergroups',
-        displayFieldName: 'name',
-        valueFieldName: 'id',
-        filter: null
-    },
-    style:{
-        grid:{
-            header:"width-twohundred-pixel"
-        }
-    }
-};
+// let customerGroupIdField: BHSelectControlType =  {
+//     name: 'customerGroupId',
+//     displayName: 'Nhóm khách hàng',
+//     placeHolder: 'Please select an option',
+//     sequenceNumber: 4,
+//     type: formControlTypes.selectList,
+//     hidden: false,
+//     readonly: false,
+//     required: true,
+//     multiple: false,
+//     optionItems: null,
+//     dataSource: {
+//         entityPluralName: 'customergroups',
+//         displayFieldName: 'name',
+//         valueFieldName: 'id',
+//         filter: null
+//     },
+//     style:{
+//         grid:{
+//             header:"width-twohundred-pixel"
+//         }
+//     }
+// };
 
 let smsTemplateEntityControls: (BHTextControlType|BHBooleanControlType|BHSelectControlType)[] = [
     baseFields.idField,
     nameField,
     contentField,
-    customerGroupIdField
+    // customerGroupIdField
 ];
 
 export const smsTemplateSchema = {

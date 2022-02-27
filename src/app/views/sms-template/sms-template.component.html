@@ -1,3 +1,108 @@
 <div class="animated fadeIn">
+    <button type="button" class="btn btn-lg btn-danger mb-2" (click)="showSMSModal()">
+        <i class="fa fa-comments-o mr-2" ></i>Gửi tin nhắn
+    </button>
     <app-bh-table-control #bhTable [pageSize]=3></app-bh-table-control>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="sendSMSModal" tabindex="-1" role="dialog" aria-labelledby="sendSMSModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="sendSMSModalLabel">Gửi tin nhắn</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideSMSModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <form [formGroup]="noteForm" (ngSubmit)="submit()">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <app-bh-select-control
+                                [parentGroup]="noteForm"
+                                [entitySchemaName]="entitySchemaName" 
+                                [controlName]="entitySchemaSMSTemplate.name"
+                                [displayName]="entitySchemaSMSTemplate.displayName"
+                                [controlType]="entitySchemaSMSTemplate.type"
+                                [controlReadonly]="entitySchemaSMSTemplate.readonly"
+                                [placeHolder]="entitySchemaSMSTemplate.placeHolder"
+                                [required]="entitySchemaSMSTemplate.required"
+                                [multiple]="entitySchemaSMSTemplate.multiple"
+                                [optionItems]="entitySchemaSMSTemplate.optionItems"
+                                [dataSource]="entitySchemaSMSTemplate.dataSource"
+                                [events]="entitySchemaSMSTemplate.events"
+                                [hasRequiredError]="formControlSMSTemplate?.errors?.required"
+                                [hasTouched]="formControlSMSTemplate?.touched"
+                                [hasInvalid]="formControlSMSTemplate?.invalid"
+                                >
+                            </app-bh-select-control>
+                            <app-bh-text-control
+                                [hidden]="formControlSMSTemplate?.invalid"
+                                [parentGroup]="noteForm"
+                                [entitySchemaName]="entitySchemaName" 
+                                [controlName]="entitySchemaSMSTemplateContent.name"
+                                [displayName]="entitySchemaSMSTemplateContent.displayName"
+                                [controlType]="entitySchemaSMSTemplateContent.type"
+                                [controlReadonly]="entitySchemaSMSTemplateContent.readonly"
+                                [minLength]="entitySchemaSMSTemplateContent.minLength"
+                                [maxLength]="entitySchemaSMSTemplateContent.maxLength"
+                                [required]="entitySchemaSMSTemplateContent.required"
+                                [hasTouched]="formControlSMSTemplateContent?.touched"
+                                [hasInvalid]="formControlSMSTemplateContent?.invalid"
+                                [hasRequiredError]="formControlSMSTemplateContent?.errors?.required"
+                                [hasMinLengthError]="formControlSMSTemplateContent?.errors?.minlength"
+                                [hasMaxLengthError]="formControlSMSTemplateContent?.errors?.maxlength">
+                            </app-bh-text-control>
+                            <app-bh-select-control
+                                [parentGroup]="noteForm"
+                                [entitySchemaName]="entitySchemaName" 
+                                [controlName]="entitySchemaCustomerGroup.name"
+                                [displayName]="entitySchemaCustomerGroup.displayName"
+                                [controlType]="entitySchemaCustomerGroup.type"
+                                [controlReadonly]="entitySchemaCustomerGroup.readonly"
+                                [placeHolder]="entitySchemaCustomerGroup.placeHolder"
+                                [required]="entitySchemaCustomerGroup.required"
+                                [multiple]="entitySchemaCustomerGroup.multiple"
+                                [optionItems]="entitySchemaCustomerGroup.optionItems"
+                                [dataSource]="entitySchemaCustomerGroup.dataSource"
+                                [events]="entitySchemaCustomerGroup.events"
+                                [hasRequiredError]="formControlCustomerGroup?.errors?.required"
+                                [hasTouched]="formControlCustomerGroup?.touched"
+                                [hasInvalid]="formControlCustomerGroup?.invalid"
+                                >
+                            </app-bh-select-control>
+                            <table class="table table-hover" [hidden]="formControlSMSTemplate?.invalid">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">{{'Tên khách hàng'}}</th>
+                                        <th scope="col">{{'Số điện thoại'}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let optionDataItem of optionData; let optionDataItemIndex = index">
+                                        <td>
+                                            {{optionDataItem.firstName}}
+                                        </td>
+                                        <td>
+                                            {{optionDataItem.phoneNumber}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                             </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" (click)="sendSMS()">Ok</button>
+            </div>
+        </div>
+    </div>
 </div>

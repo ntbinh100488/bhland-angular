@@ -40,7 +40,7 @@ export class BhSelectControlComponent implements OnInit {
     public valueFieldName: string;
     public nullValue: any = null;
 
-    constructor(private bhCoreService: BhCoreService, private eventService: EventService, @Inject(FormBuilderComponent) private parent: FormBuilderComponent) { }
+    constructor(private bhCoreService: BhCoreService, private eventService: EventService) { }
 
     ngOnInit(): void {
         if(this.optionItems) {
@@ -64,11 +64,12 @@ export class BhSelectControlComponent implements OnInit {
 
     modelChanged(changedValue:any){
         if(changedValue && this.events?.hasChangeEvent){
+            let selectedObject = this.dataSourceData.find(dsItem => dsItem[this.valueFieldName] === parseInt(changedValue));
             let event:BHFormControlEvent = {
                 entityType: this.entitySchemaName,
                 controlName: this.controlName,
                 eventName: BHFORMCONTROLEVENTTYPES.eventChange,
-                value: parseInt(changedValue)
+                value: selectedObject
             }
             this.eventService.emitEvent(event);
         }
